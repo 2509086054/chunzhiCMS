@@ -111,7 +111,7 @@ class helper extends baseHelper
             if($lang and RUN_MODE != 'admin') $link .= "&l=$lang";
             if(isset($currentRequestType)) $config->requestType = $currentRequestType;
         }
-        return $link
+        return $link;
     }
 
     /**
@@ -477,4 +477,34 @@ function str2Entity($string)
     }
 
     return $entity;
+}
+
+/**
+ * 调试函数
+ * 输出日志
+ * by alisa 2019/5/21
+ */
+if (!function_exists('dout'))
+{
+	function dout($str)
+	{
+		$t = debug_backtrace();
+		$backtrace = array_shift($t);
+		$msg = print_r($str, true);
+		if (is_array($str))
+		{
+			$msg = "\r\n" . $msg;
+		}
+		$msg = date('Y-m-d H:i:s') ."\t". $backtrace['file'] . ' : ' . $backtrace['line'] ."\t" . $msg ."\r\n";
+		$path =str_replace('framework/helper.class.php', '', str_replace('\\', '/', __FILE__));
+		//得到系统主目录
+		$logfile = $path . 'logs/log_' . date('Y-m-d') . '.txt';
+		//只操作文件
+		//需手工在system目录下新建一个目录logs
+		$fp = fopen($logfile,"a");
+		flock($fp, LOCK_EX) ;
+		fwrite($fp,$msg);
+		flock($fp, LOCK_UN);
+		fclose($fp);
+	}
 }
