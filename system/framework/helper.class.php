@@ -8,7 +8,7 @@
  *
  * The author disclaims copyright to this source code. In place of
  * a legal notice, here is a blessing:
- * 
+ *
  *  May you do good and not evil.
  *  May you find forgiveness for yourself and forgive others.
  *  May you share freely, never taking more than you give.
@@ -18,7 +18,7 @@ class helper extends baseHelper
 {
     /**
      * Create a link to a module's method.
-     * 
+     *
      * This method also mapped in control class to call conveniently.
      * <code>
      * <?php
@@ -35,88 +35,111 @@ class helper extends baseHelper
      * @access public
      * @return string the link string.
      */
-    static public function createLink($moduleName, $methodName = 'index', $vars = '', $alias = array(), $viewType = '')
+    public static function createLink($moduleName, $methodName = 'index', $vars = '', $alias = array(), $viewType = '')
     {
         global $app, $config;
         $clientLang = $app->getClientLang();
         $lang       = $config->langCode;
 
-        if(empty($viewType) and $app->getViewType() == 'wxml')
-        {
+        if (empty($viewType) and $app->getViewType() == 'wxml') {
             $viewType = 'wxml';
             $currentRequestType = $config->requestType;
             $config->requestType = 'GET';
         }
 
         /* Set viewType is mhtml if visit with mobile.*/
-        if(!$viewType and RUN_MODE == 'front' and $app->clientDevice == 'mobile' and $methodName != 'oauthCallback') $viewType = 'mhtml';
+        if (!$viewType and RUN_MODE == 'front' and $app->clientDevice == 'mobile' and $methodName != 'oauthCallback') {
+            $viewType = 'mhtml';
+        }
 
         /* Set vars and alias. */
-        if(!is_array($vars)) parse_str($vars, $vars);
-        if(!is_array($alias)) parse_str($alias, $alias);
-        foreach($alias as $key => $value) $alias[$key] = urlencode($value);
+        if (!is_array($vars)) {
+            parse_str($vars, $vars);
+        }
+        if (!is_array($alias)) {
+            parse_str($alias, $alias);
+        }
+        foreach ($alias as $key => $value) {
+            $alias[$key] = urlencode($value);
+        }
 
         /* Seo modules return directly. */
-        if($config->requestType != 'GET' and method_exists('uri', 'create' . $moduleName . $methodName))
-        {
-            if($config->requestType == 'PATH_INFO2') $config->webRoot = $_SERVER['SCRIPT_NAME'] . '/';
+        if ($config->requestType != 'GET' and method_exists('uri', 'create' . $moduleName . $methodName)) {
+            if ($config->requestType == 'PATH_INFO2') {
+                $config->webRoot = $_SERVER['SCRIPT_NAME'] . '/';
+            }
             $link = call_user_func_array('uri::create' . $moduleName . $methodName, array('param'=> $vars, 'alias'=>$alias, 'viewType'=>$viewType));
 
             /* Add client lang. */
-            if($lang and $link) $link = $config->webRoot .  $lang . '/' . substr($link, strlen($config->webRoot));
+            if ($lang and $link) {
+                $link = $config->webRoot .  $lang . '/' . substr($link, strlen($config->webRoot));
+            }
 
-            if($config->requestType == 'PATH_INFO2') $config->webRoot = getWebRoot();
-            if($link) return $link;
+            if ($config->requestType == 'PATH_INFO2') {
+                $config->webRoot = getWebRoot();
+            }
+            if ($link) {
+                return $link;
+            }
         }
         
         /* Set the view type. */
-        if(empty($viewType)) $viewType = $app->getViewType();
-        if($config->requestType == 'PATH_INFO')  $link = $config->webRoot;
-        if($config->requestType == 'PATH_INFO2') $link = $_SERVER['SCRIPT_NAME'] . '/';
-        if($config->requestType == 'GET') $link = $_SERVER['SCRIPT_NAME'];
-        if($config->requestType != 'GET' and $lang) $link .= "$lang/";
+        if (empty($viewType)) {
+            $viewType = $app->getViewType();
+        }
+        if ($config->requestType == 'PATH_INFO') {
+            $link = $config->webRoot;
+        }
+        if ($config->requestType == 'PATH_INFO2') {
+            $link = $_SERVER['SCRIPT_NAME'] . '/';
+        }
+        if ($config->requestType == 'GET') {
+            $link = $_SERVER['SCRIPT_NAME'];
+        }
+        if ($config->requestType != 'GET' and $lang) {
+            $link .= "$lang/";
+        }
 
         /* Common method. */
-        if($config->requestType != 'GET')
-        {
+        if ($config->requestType != 'GET') {
             /* If the method equal the default method defined in the config file and the vars is empty, convert the link. */
-            if($methodName == $config->default->method and empty($vars))
-            {
+            if ($methodName == $config->default->method and empty($vars)) {
                 /* If the module also equal the default module, change index-index to index.html. */
-                if($moduleName == $config->default->module)
-                {
+                if ($moduleName == $config->default->module) {
                     $link .= 'index.' . $viewType;
-                }
-                elseif($viewType == $app->getViewType())
-                {
+                } elseif ($viewType == $app->getViewType()) {
                     $link .= $moduleName . '/';
-                }
-                else
-                {
+                } else {
                     $link .= $moduleName . '.' . $viewType;
                 }
-            }
-            else
-            {
+            } else {
                 $link .= "$moduleName{$config->requestFix}$methodName";
-                foreach($vars as $value) $link .= "{$config->requestFix}$value";
+                foreach ($vars as $value) {
+                    $link .= "{$config->requestFix}$value";
+                }
                 $link .= '.' . $viewType;
             }
-        }
-        else
-        {
+        } else {
             $link .= "?{$config->moduleVar}=$moduleName&{$config->methodVar}=$methodName";
-            if($viewType != 'html') $link .= "&{$config->viewVar}=" . $viewType;
-            foreach($vars as $key => $value) $link .= "&$key=$value";
-            if($lang and RUN_MODE != 'admin') $link .= "&l=$lang";
-            if(isset($currentRequestType)) $config->requestType = $currentRequestType;
+            if ($viewType != 'html') {
+                $link .= "&{$config->viewVar}=" . $viewType;
+            }
+            foreach ($vars as $key => $value) {
+                $link .= "&$key=$value";
+            }
+            if ($lang and RUN_MODE != 'admin') {
+                $link .= "&l=$lang";
+            }
+            if (isset($currentRequestType)) {
+                $config->requestType = $currentRequestType;
+            }
         }
         return $link;
     }
 
     /**
      * Get exec infomation.
-     * 
+     *
      * @access public
      * @return string
      */
@@ -133,16 +156,14 @@ class helper extends baseHelper
         $memoryUsage = number_format(round($memoryUsage / 1024 / 1024, 2), 2);
 
         $html = "<span style='cursor:pointer;' id='execIcon'><i class='icon icon-dashboard'> </i></span>";
-        if($app->clientDevice == 'desktop')
-        {
+        if ($app->clientDevice == 'desktop') {
             $html .= sprintf($lang->execInfo, count(dao::$querys), $memoryUsage . 'MB', $execTime);
             $html .= '<script>';
             $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'right'}); }); ";
             $html .= '</script>';
         }
 
-        if($app->clientDevice == 'mobile')
-        {
+        if ($app->clientDevice == 'mobile') {
             $html .= '<script>';
             $html .= "$().ready(function() { ";
             $html .= "$('#execIcon').click(function(){ $('#execInfoBar').toggle();});";
@@ -156,9 +177,9 @@ class helper extends baseHelper
     }
 
     /**
-     * Create random string. 
-     * 
-     * @param  int    $length 
+     * Create random string.
+     *
+     * @param  int    $length
      * @param  string $skip A-Z|a-z|0-9
      * @static
      * @access public
@@ -170,21 +191,22 @@ class helper extends baseHelper
         $skip = str_replace('A-Z', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', $skip);
         $skip = str_replace('a-z', 'abcdefghijklmnopqrstuvwxyz', $skip);
         $skip = str_replace('0-9', '0123456789', $skip);
-        for($i = 0; $i < strlen($skip); $i++)
-        {
+        for ($i = 0; $i < strlen($skip); $i++) {
             $str = str_replace($skip[$i], '', $str);
         }
 
         $strlen = strlen($str);
-        while($length > strlen($str)) $str .= $str;
+        while ($length > strlen($str)) {
+            $str .= $str;
+        }
 
-        $str = str_shuffle($str); 
-        return substr($str,0,$length); 
+        $str = str_shuffle($str);
+        return substr($str, 0, $length);
     }
 
     /**
      * Decode xss codes.
-     * 
+     *
      * @param  string    $content
      * @access public
      * @return void
@@ -198,8 +220,8 @@ class helper extends baseHelper
 
     /**
      * Process traffic.
-     * 
-     * @param  float    $traffic 
+     *
+     * @param  float    $traffic
      * @access public
      * @return float
      */
@@ -209,31 +231,28 @@ class helper extends baseHelper
     }
 
     /**
-     * Hex color to RGB color 
-     * 
-     * @param  string    $hexColor 
+     * Hex color to RGB color
+     *
+     * @param  string    $hexColor
      * @static
      * @access public
      * @return void
      */
     public static function hex2Rgb($hexColor)
     {
-        $color = str_replace('#','',$hexColor);
-        if (strlen($color) > 3)
-        {
+        $color = str_replace('#', '', $hexColor);
+        if (strlen($color) > 3) {
             $rgb = array(
-                'r'=>hexdec(substr($color,0,2)),
-                'g'=>hexdec(substr($color,2,2)),
-                'b'=>hexdec(substr($color,4,2))
+                'r'=>hexdec(substr($color, 0, 2)),
+                'g'=>hexdec(substr($color, 2, 2)),
+                'b'=>hexdec(substr($color, 4, 2))
             );
-        }
-        else
-        {
-            $color = str_replace('#','',$hexColor);
-            $r = substr($color,0,1). substr($color,0,1);
-            $g = substr($color,1,1). substr($color,1,1);
-            $b = substr($color,2,1). substr($color,2,1);
-            $rgb = array( 
+        } else {
+            $color = str_replace('#', '', $hexColor);
+            $r = substr($color, 0, 1). substr($color, 0, 1);
+            $g = substr($color, 1, 1). substr($color, 1, 1);
+            $b = substr($color, 2, 1). substr($color, 2, 1);
+            $rgb = array(
                 'r' => hexdec($r),
                 'g' => hexdec($g),
                 'b' => hexdec($b)
@@ -244,15 +263,15 @@ class helper extends baseHelper
 
     /**
      * Tidy function.
-     * 
-     * @param  string    $html 
+     *
+     * @param  string    $html
      * @static
      * @access public
      * @return string
      */
     public static function tidy($html)
     {
-        $config = array (
+        $config = array(
             'show-errors' => 0,
             'wrap' => 300,
             'tab-size' => 4,
@@ -279,137 +298,142 @@ class helper extends baseHelper
 
 /**
  * Get home root.
- * 
- * @param  string $langCode 
+ *
+ * @param  string $langCode
  * @access public
  * @return string
  */
 function getHomeRoot($langCode = '')
 {
-	global $config, $app;
-	$requestType = $config->requestType;
-	if(RUN_MODE == 'admin') $config->requestType = zget($config, 'frontRequestType', $config->requestType);
+    global $config, $app;
+    $requestType = $config->requestType;
+    if (RUN_MODE == 'admin') {
+        $config->requestType = zget($config, 'frontRequestType', $config->requestType);
+    }
 
-	$langCode = $langCode == '' ? $config->langCode : $langCode;
-	$defaultLang = isset($config->defaultLang) ?  $config->defaultLang : $config->default->lang;
-	if($langCode == $config->langsShortcuts[$defaultLang])
-	{
-		$config->requestType = $requestType;
-		return $config->webRoot;
-	}
-	$homeRoot = $config->webRoot;
+    $langCode = $langCode == '' ? $config->langCode : $langCode;
+    $defaultLang = isset($config->defaultLang) ?  $config->defaultLang : $config->default->lang;
+    if ($langCode == $config->langsShortcuts[$defaultLang]) {
+        $config->requestType = $requestType;
+        return $config->webRoot;
+    }
+    $homeRoot = $config->webRoot;
 
-	if($langCode and $config->requestType == 'PATH_INFO') $homeRoot = $config->webRoot . $langCode; 
-	if($langCode and $config->requestType == 'PATH_INFO2') $homeRoot = $config->webRoot . 'index.php/' . "$langCode";
-	if($langCode and $config->requestType == 'GET') $homeRoot = $config->webRoot . 'index.php?l=' . "$langCode";
-	if($config->requestType != 'GET') $homeRoot = rtrim($homeRoot, '/') . '/';
+    if ($langCode and $config->requestType == 'PATH_INFO') {
+        $homeRoot = $config->webRoot . $langCode;
+    }
+    if ($langCode and $config->requestType == 'PATH_INFO2') {
+        $homeRoot = $config->webRoot . 'index.php/' . "$langCode";
+    }
+    if ($langCode and $config->requestType == 'GET') {
+        $homeRoot = $config->webRoot . 'index.php?l=' . "$langCode";
+    }
+    if ($config->requestType != 'GET') {
+        $homeRoot = rtrim($homeRoot, '/') . '/';
+    }
 
-	$config->requestType = $requestType;
-	return $homeRoot;
+    $config->requestType = $requestType;
+    return $homeRoot;
 }
 
 /**
- * Check admin entry. 
- * 
+ * Check admin entry.
+ *
  * @access public
  * @return string
  */
 function checkAdminEntry()
 {
-	if(strpos($_SERVER['PHP_SELF'], '/admin.php') === false) return true; 
+    if (strpos($_SERVER['PHP_SELF'], '/admin.php') === false) {
+        return true;
+    }
 
-	$path  = dirname($_SERVER['SCRIPT_FILENAME']);
-	$files = scandir($path);
-	$defaultFiles = array('admin.php', 'index.php', 'install.php', 'loader.php', 'upgrade.php');
-	foreach($files as $file)
-	{
-		if(strpos($file, '.php') !== false and !in_array($file, $defaultFiles))
-		{
-			$contents = file_get_contents($path . '/' . $file);
-			if(strpos($contents, "'RUN_MODE', 'admin'") && strpos($_SERVER['PHP_SELF'], '/admin.php') !== false) die(header("location: " . getWebRoot()));
-		}
-	}
+    $path  = dirname($_SERVER['SCRIPT_FILENAME']);
+    $files = scandir($path);
+    $defaultFiles = array('admin.php', 'index.php', 'install.php', 'loader.php', 'upgrade.php');
+    foreach ($files as $file) {
+        if (strpos($file, '.php') !== false and !in_array($file, $defaultFiles)) {
+            $contents = file_get_contents($path . '/' . $file);
+            if (strpos($contents, "'RUN_MODE', 'admin'") && strpos($_SERVER['PHP_SELF'], '/admin.php') !== false) {
+                die(header("location: " . getWebRoot()));
+            }
+        }
+    }
 }
 
 /**
  * Format time.
- * 
- * @param  int    $time 
- * @param  string $format 
+ *
+ * @param  int    $time
+ * @param  string $format
  * @access public
  * @return void
  */
 function formatTime($time, $format = '')
 {
     global $lang;
-	$time = str_replace('0000-00-00', '', $time);
-	$time = str_replace('00:00:00', '', $time);
-	if($format == 'publish')
-    {
+    $time = str_replace('0000-00-00', '', $time);
+    $time = str_replace('00:00:00', '', $time);
+    if ($format == 'publish') {
         $pubTime = strtotime($time);
         $pubTimeLen = time() - $pubTime;
-        if($pubTimeLen > 86400)
-        {
+        if ($pubTimeLen > 86400) {
             return substr($time, 0, 10);
-        }
-        else
-        {
+        } else {
             $minute = floor($pubTimeLen / 60);
             $hour = floor($pubTimeLen / 3600);
-            if($hour == 0)
-            {
+            if ($hour == 0) {
                 return $minute == 1 ? $lang->date->oneMinuteAgo : $minute . $lang->date->minutesAgo;
-            }
-            else
-            {
+            } else {
                 return $hour == 1 ? $lang->date->oneHourAgo : $hour . $lang->date->hoursAgo;
             }
         }
-    }
-    elseif($format)
-    {
+    } elseif ($format) {
         return date($format, strtotime($time));
     }
-	return trim($time);
+    return trim($time);
 }
 
 /**
  * Get file mime type.
- * 
- * @param  int    $file 
+ *
+ * @param  int    $file
  * @access public
  * @return void
  */
 function getFileMimeType($file)
 {
-	if(function_exists('mime_content_type')) return mime_content_type($file);
-	if(function_exists('finfo_open'))
-	{
-		$finfo = finfo_open(FILEINFO_MIME_TYPE);
-		return finfo_file($finfo, $file); 
-	}
-	return false;
+    if (function_exists('mime_content_type')) {
+        return mime_content_type($file);
+    }
+    if (function_exists('finfo_open')) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        return finfo_file($finfo, $file);
+    }
+    return false;
 }
 
 /**
  * Key for chanzhi.
- * 
+ *
  * @access public
  * @return string
  */
 function k()
 {
-	global $app, $lang;
+    global $app, $lang;
 
-	$codeLen  = strlen($app->siteCode);
-	$keywords = explode(';', $lang->k);
-	$count    = count($keywords);
+    $codeLen  = strlen($app->siteCode);
+    $keywords = explode(';', $lang->k);
+    $count    = count($keywords);
 
-	$sum = 0;
-	for($i = 0; $i < $codeLen; $i++) $sum += ord($app->siteCode{$i});
+    $sum = 0;
+    for ($i = 0; $i < $codeLen; $i++) {
+        $sum += ord($app->siteCode{$i});
+    }
 
-	$key = $sum % $count;
-	return $keywords[$key];
+    $key = $sum % $count;
+    return $keywords[$key];
 }
 
 /**
@@ -420,31 +444,35 @@ function k()
  * @return bool
  */
 function saveInfoToFile($file, $info)
-{    
-	if(!file_exists($file)) return false;
-	if(!is_writable($file)) return false;
+{
+    if (!file_exists($file)) {
+        return false;
+    }
+    if (!is_writable($file)) {
+        return false;
+    }
 
-	$time = helper::now(); 
-	$info = print_r($info);
-	file_put_contents($file, $time . "\n");
-	file_put_contents($file, $info . "\n", FILE_APPEND);
+    $time = helper::now();
+    $info = print_r($info);
+    file_put_contents($file, $time . "\n");
+    file_put_contents($file, $info . "\n", FILE_APPEND);
 }
 
 function http_build_url($data)
 {
-	$url  = isset( $data['scheme'])  ? "{$data['scheme']}://" : '';
-	$url .= !empty($data['host'])    ? $data['host'] : '';
-	$url .= !empty($data['port'])    ? ":{$data['port']}" : '';
-	$url .= $data['path'];
-	$url .= empty($data['query'])    ? '' : "?{$data['query']}";
-	$url .= empty($data['fragment']) ? '' : "#{$data['fragment']}";
-	return $url;
+    $url  = isset($data['scheme'])  ? "{$data['scheme']}://" : '';
+    $url .= !empty($data['host'])    ? $data['host'] : '';
+    $url .= !empty($data['port'])    ? ":{$data['port']}" : '';
+    $url .= $data['path'];
+    $url .= empty($data['query'])    ? '' : "?{$data['query']}";
+    $url .= empty($data['fragment']) ? '' : "#{$data['fragment']}";
+    return $url;
 }
 
 /**
  * Set string to entity.
- * 
- * @param  string    $string 
+ *
+ * @param  string    $string
  * @access public
  * @return string
  */
@@ -464,14 +492,10 @@ function str2Entity($string)
     $str2Entities['@'] = '&#x40;';
 
     $entity = '';
-    for($i = 0; $i < strlen($string); $i++)
-    {
-        if(isset($str2Entities[$string{$i}]))
-        {
+    for ($i = 0; $i < strlen($string); $i++) {
+        if (isset($str2Entities[$string{$i}])) {
             $entity .= $str2Entities[$string{$i}];
-        }
-        else
-        {
+        } else {
             $entity .= htmlentities($string{$i});
         }
     }
@@ -480,31 +504,35 @@ function str2Entity($string)
 }
 
 /**
+ * @Description:
  * 调试函数
  * 输出日志
- * by alisa 2019/5/21
+ * @param : {type}
+ * @return:
+ * @Author: Alisa
+ * @LastEditors: Alisa
+ * @LastEditTime: Do not edit
+ * @Date: 2019-05-21
  */
-if (!function_exists('dout'))
-{
-	function dout($str)
-	{
-		$t = debug_backtrace();
-		$backtrace = array_shift($t);
-		$msg = print_r($str, true);
-		if (is_array($str))
-		{
-			$msg = "\r\n" . $msg;
-		}
-		$msg = date('Y-m-d H:i:s') ."\t". $backtrace['file'] . ' : ' . $backtrace['line'] ."\t" . $msg ."\r\n";
-		$path =str_replace('framework/helper.class.php', '', str_replace('\\', '/', __FILE__));
-		//得到系统主目录
-		$logfile = $path . 'logs/log_' . date('Y-m-d') . '.txt';
-		//只操作文件
-		//需手工在system目录下新建一个目录logs
-		$fp = fopen($logfile,"a");
-		flock($fp, LOCK_EX) ;
-		fwrite($fp,$msg);
-		flock($fp, LOCK_UN);
-		fclose($fp);
-	}
+if (!function_exists('dout')) {
+    function dout($str)
+    {
+        $t = debug_backtrace();
+        $backtrace = array_shift($t);
+        $msg = print_r($str, true);
+        if (is_array($str)) {
+            $msg = "\r\n" . $msg;
+        }
+        $msg = date('Y-m-d H:i:s') ."\t". $backtrace['file'] . ' : ' . $backtrace['line'] ."\t" . $msg ."\r\n";
+        $path =str_replace('framework/helper.class.php', '', str_replace('\\', '/', __FILE__));
+        //得到系统主目录
+        $logfile = $path . 'logs/log_' . date('Y-m-d') . '.txt';
+        //只操作文件
+        //需手工在system目录下新建一个目录logs
+        $fp = fopen($logfile, "a");
+        flock($fp, LOCK_EX) ;
+        fwrite($fp, $msg);
+        flock($fp, LOCK_UN);
+        fclose($fp);
+    }
 }
