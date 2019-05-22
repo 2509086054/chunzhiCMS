@@ -1,1 +1,55 @@
-{}
+{
+  "workbench.colorTheme": "Solarized Light",
+  "workbench.iconTheme": "vscode-icons",
+  //配置eslint
+  "eslint.autoFixOnSave": true,
+  "files.autoSave": "off",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    { "language": "html", "autoFix": true },
+    { "language": "vue", "autoFix": true }
+  ],
+  "eslint.options": {
+    "plugins": ["html"]
+  },
+  //为了符合eslint的两个空格间隔原则
+  "editor.tabSize": 2,
+  "terminal.integrated.rendererType": "dom",
+  "breadcrumbs.enabled": true,
+  "workbench.editor.enablePreview": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "php.validate.executablePath":"D:/xampp/php/php.exe",
+  "php.suggest.basic": false,　　// 插件作者建议禁用VS代码内置的PHP智能感知设置php.suggest.basic，以false避免重复的建议
+
+  "fileheader.customMade": { // 头部注释,使用快捷键:window：ctrl+alt+t/mac：ctrl+cmd+t,即可生成文件头部注释。
+    "Description":"file content",
+    "Author":"Alisa",
+    "Date": "Do not edit", // 文件创建时间(不变)
+    "LastEditors": "Alisa", // 文件最后编辑者
+    "LastEditTime": "Do not edit" // 文件最后编辑时间
+  }, 
+  "fileheader.cursorMode": { // 函数注释,使用快捷键window：ctrl+alt+t,mac：ctrl+cmd+t，即可生成函数注释。
+    "Description":"", 
+    "param ":"{type}", 
+    "return":"",
+    "Author":"Alisa",
+    "Date": "Do not edit", // 文件创建时间(不变)
+    "LastEditors": "Alisa", // 文件最后编辑者
+    "LastEditTime": "Do not edit" // 文件最后编辑时间
+  },
+  "php-cs-fixer.executablePath": "C:/Users/pc/.vscode/extensions/junstyle.php-cs-fixer-0.1.119/php-cs-fixer.phar",
+  "php-cs-fixer.executablePathWindows": "",   //eg: php-cs-fixer.bat
+  "php-cs-fixer.onsave": true,
+  "php-cs-fixer.rules": "@PSR2",
+  "php-cs-fixer.config": ".php_cs;.php_cs.dist",
+  "php-cs-fixer.allowRisky": false,
+  "php-cs-fixer.pathMode": "override",
+  "php-cs-fixer.exclude": [],
+  "php-cs-fixer.autoFixByBracket": true,
+  "php-cs-fixer.autoFixBySemicolon": false,
+  "php-cs-fixer.formatHtml": false,
+  "php-cs-fixer.documentFormattingProvider": true
+
+}
