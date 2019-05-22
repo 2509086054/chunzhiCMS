@@ -1,2 +1,4 @@
-data/
-tmp/
+/system/tmp
+/www/data
+/www/xuanxuan
+/www/zui
