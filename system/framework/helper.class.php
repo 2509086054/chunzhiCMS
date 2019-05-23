@@ -526,7 +526,7 @@ if (!function_exists('dout')) {
         $msg = date('Y-m-d H:i:s') ."\t". $backtrace['file'] . ' : ' . $backtrace['line'] ."\t" . $msg ."\r\n";
         $path =str_replace('framework/helper.class.php', '', str_replace('\\', '/', __FILE__));
         //得到系统主目录
-        $logfile = $path . 'logs/log_' . date('Y-m-d') . '.txt';
+        $logfile = $path . 'tmp/log/log_' . date('Y-m-d') . '.txt';
         //只操作文件
         //需手工在system目录下新建一个目录logs
         $fp = fopen($logfile, "a");
