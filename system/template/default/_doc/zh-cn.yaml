@@ -1,17 +1,15 @@
-name:默认模板
+name:Dale模板
 parser:raintpl
 code:default
 type:template
-author:蝉知官方
-desc:这是蝉知企业门户系统默认模板
-version:4.5.2
+author:iFunlive
+desc:基于Dale响应式H5改造的模板
+version:1.0
 chanzhiVersion:4.5.2
 charge:free
 device:,desktop,
 license:http://www.chanzhi.org/book/chanzhieps/58_license.html
 themes:
    default:默认
-   tartan:蝉之格
-   clean:清晰
-   wide:宽屏
    blank:空白
+
