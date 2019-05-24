@@ -848,12 +848,22 @@ class blockModel extends model
      * @access public
      * @return string
      */
+     /**
+      * @Description: 
+      * 对 $style 初始值及返回值进行控制
+      * 防止空的<style></style>出现在HTML中
+      * @Author: Alisa
+      * @LastEditors: Alisa
+      * @LastEditTime: Do not edit
+      * @Date: 2019-05-24 11:04:48
+      */
     public function parseCSS($block, $theme)
     {
         $content = is_object($block->content) ? $block->content : json_decode($block->content);
-        $style  = '<style>';
+        $style  = '';
         if(isset($content->custom->$theme))
         {
+            $style .= '<style>';
             $style .= '#block' . $block->id . '{';
             $style .= !empty($content->custom->$theme->backgroundColor) ? 'background-color:' . $content->custom->$theme->backgroundColor . ' !important;' : '';
             $style .= !empty($content->custom->$theme->textColor) ? 'color:' . $content->custom->$theme->textColor . ' !important;;' : '';
@@ -890,7 +900,9 @@ class blockModel extends model
                 $style .= $customStyle;
             }
         }
-        $style .= '</style>';
+        if (!empty($style)){
+			$style .= '</style>';
+		}
 
         return $style;
     }
