@@ -1,73 +1,169 @@
-{if(!defined("RUN_MODE"))} {!die()} {/if}
-{*
-/**
- * The about front view file of block module of chanzhiEPS.
- *
- * @copyright   Copyright 2009-2015 青岛易软天创网络科技有限公司(QingDao Nature Easy Soft Network Technology Co,LTD, www.cnezsoft.com)
- * @license     ZPLV12 (http://zpl.pub/page/zplv12.html)
- * @author      Yidong wang <yidong@cnezsoft.com>
- * @package     block
- * @version     $Id$
- * @link        http://www.chanzhi.org
-*/
-*}
-{$block->content = json_decode($block->content)}
-{$groupID        = !empty($block->content->group) ? $block->content->group : ''}
-{$slides         = $model->loadModel('slide')->getList($groupID)}
-{$slideID        = 'slide' . $block->id . '-' . $groupID}
-{$group          = $model->loadModel('tree')->getByID($groupID)}
-{$globalButtons  = zget($group, 'desc', '') ? json_decode($group->desc, true) : array()}
-{$slideStyle     = !empty($block->content->style) ? $block->content->style : 'carousel'}
-{if($slides)}
-<div class='block {!echo $blockClass}' id='block{!echo $block->id}'>
-  {if($slideStyle == 'tile')}
-  <div id="{!echo $slideID}" class='tile slide' data-id='{!echo $groupID}'>
-  {else}
-  <div id='{!echo $slideID}' class='carousel slide' data-ride='carousel' data-ve='carousel' data-id='{!echo $groupID}'>
-    <div class='carousel-inner'>
-  {/if}
-      {$height = 0; $index = 0}
-      {foreach($slides as $slide)}
-        {$url    = empty($slide->mainLink) ? '' : " data-url='" . $slide->mainLink . "'"}
-        {$target = " data-target='" . ($slide->target ? '_blank' : '_self') . "'"}
-        {if($height == 0 and $slide->height)} {$height = $slide->height} {/if}
-        {$itemClass = 0 === $index++ ? 'item active' : 'item'}
-        {if($slide->backgroundType == 'image')}
-          <div data-id='{!echo $slide->id}' class='{!echo $itemClass }'{!echo $url . ' ' . $target}>
-          {!print(html::image($slide->image,"alt='{{$slide->title}}' title='{{$slide->title}}'"))}
-        {else}
-          <div data-id='{!echo $slide->id}' class='{!echo $itemClass }'{!echo $url . ' ' . $target} style='{!echo 'background-color: ' . $slide->backgroundColor . '; height: ' . $height . 'px'}'>
-        {/if}
-          <div class="{!echo $slideStyle . '-caption'}">
-            <h2 style='color:{!echo $slide->titleColor}'>{!echo $slide->title}</h2>
-            <div>{!echo $slide->summary}</div>
-            {foreach($globalButtons as $id => $globalButton)}
-              {foreach($globalButton as $key => $global)}
-                {if(!$global)} {continue} {/if}
-                {if(trim($slides[$id]->label[$key]) != '')}
-                  {if($slides[$id]->buttonUrl[$key])}  {!html::a($slides[$id]->buttonUrl[$key], $slides[$id]->label[$key], "class='btn btn-lg btn-{{$slides[$id]->buttonClass[$key]}}' target='{{$slides[$id]->buttonTarget[$key]}}'")} {/if}
-                  {if(!$slides[$id]->buttonUrl[$key])} {!html::commonButton($slides[$id]->label[$key], "btn btn-lg btn-{{$slides[$id]->buttonClass[$key]}}")} {/if}
-                {/if}
-              {/foreach}
-            {/foreach}
-
-            {foreach($slide->label as $key => $label)}
-              {if(!empty($globalButtons[$slide->id][$key]))} {continue} {/if}
-              {if(trim($label) != '')}
-                {if($slide->buttonUrl[$key])} {!html::a($slide->buttonUrl[$key], $label, "class='btn btn-lg btn-{{$slide->buttonClass[$key]}}' target='{{$slide->buttonTarget[$key]}}'")} {/if}
-                {if(!$slide->buttonUrl[$key])} {!html::commonButton($label, "btn btn-lg btn-{{$slide->buttonClass[$key]}}")} {/if}
-              {/if}
-            {/foreach}
-          </div>
-        </div>
-      {/foreach}
-    {if($slideStyle == 'carousel')}
-      </div>
-      {if(count($slides) > 1)}
-      <a class='left carousel-control' href='#{!echo $slideID}' data-slide='prev'><i class='icon icon-chevron-left'></i></a>
-      <a class='right carousel-control' href='#{!echo $slideID}' data-slide='next'><i class='icon icon-chevron-right'></i></a>
-      {/if}
-    {/if}
-  </div>
-</div>
-{/if}
+<div class="slider-wrapper">
+        
+        <!-- masterslider -->
+        <div class="master-slider wrapper" id="masterslider" data-height="fullscreen">
+        	
+            <!-- Slide 1 -->
+            <div class="ms-slide slide-1" style="z-index: 10" data-delay="8">
+            	
+                <!-- slide background -->
+                <img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/image1.png" alt="lorem ipsum dolor sit" />
+                
+                <h1 class="ms-layer center" style="left:0; top:25px;"
+                    data-effect="rotatetop(-40,60,l)"
+                    data-duration="3500"
+                    data-delay="0"
+                    data-ease="easeOutExpo"
+                >Welcome Human</h1>
+                
+                <h2 class="ms-layer center"  style="left:0; top:156px" 
+                    data-effect="left(short)"
+                    data-duration="3500"
+                    data-delay="300"
+                    data-ease="easeOutExpo"
+                >The picture you paint will be the one they’ll see.</h2>
+                
+                <!-- iPhone mockup -->
+                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/iphone.png" alt="layer" class="ms-layer"
+                    style="top:280px; left:145px; width:797px; height:595px;" 
+                    data-effect="bottom(100)"
+                    data-duration="1200"
+                    data-delay="600"
+                    data-ease="easeOutQuad"
+                    data-type="image"
+                />
+                
+                <!-- First iPhone Screen Layer -->
+                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                    style="top:345px; left:295px; width:489px; height:303px;"
+                    data-type="image"
+                    data-delay="600"
+                    data-ease="easeOutQuad"
+                    data-effect="bottom(100)"
+                    data-duration="1200"
+                    data-hide-ease="easeOutExpo"
+                    data-hide-effect="top(200)"
+                    data-hide-duration="1200"
+                    data-hide-time="3000"
+                />
+                
+                <!-- First iPhone Screen Layer -->
+                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                    style="top:345px; left:295px; width:489px; height:303px;"
+                    data-type="image"
+                    data-delay="3000"
+                    data-ease="easeOutQuad"
+                    data-effect="bottom(0)"
+                    data-duration="1200"
+                    data-hide-ease="easeOutExpo"
+                    data-hide-effect="top(200)"
+                    data-hide-duration="1200"
+                    data-hide-time="4500"
+                />
+                
+                 <!-- First iPhone Screen Layer -->
+                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                    style="top:345px; left:295px; width:489px; height:303px;"
+                    data-type="image"
+                    data-delay="4500"
+                    data-ease="easeOutQuad"
+                    data-effect="bottom(0)"
+                    data-duration="1200"
+                    data-hide-ease="easeOutExpo"
+                    data-hide-effect="top(200)"
+                    data-hide-duration="1200"
+                    data-hide-time="6000"
+                />
+                
+                <!-- First iPhone Screen Layer -->
+                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-3.png" alt="layer" class="ms-layer"
+                    style="top:345px; left:295px; width:489px; height:303px;"
+                    data-type="image"
+                    data-delay="6000"
+                    data-ease="easeOutQuad"
+                    data-effect="bottom(0)"
+                    data-duration="1200"
+                />
+             
+            </div>
+            <!-- end of slide -->
+            
+            <!-- slide 2 -->
+            <div class="ms-slide slide-2" style="z-index: 11" data-delay="6">
+          
+                <!-- slide background -->
+            	<img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
+                 
+                  <h2 class="ms-layer" style="left:7px; top:215px;"
+                    data-effect="top(100)"
+                    data-duration="3500"
+                    data-delay="0"
+                    data-ease="easeOutExpo"
+                >A website like no other.</h2>
+                
+                <h1 class="ms-layer"  style="left:0; top:276px" 
+                    data-effect="bottom(short)"
+                    data-duration="2500"
+                    data-delay="500"
+                    data-ease="easeOutExpo"
+                >Modern, Clean, Minimal</h1>
+                
+                <p class="ms-layer h4" style="left:7px; top:415px; width:460px;"
+                	data-effect="bottom(short)"
+                    data-duration="1200"
+                    data-delay="600"
+                    data-ease="300"
+               >Rigged with over xx homepages, xx header styels, xx sliders, 
+				xx footer styles, inifinite color options.</p>
+                
+                 <p class="ms-layer h4" style="left:7px; top:517px; width:460px;"
+                	data-effect="bottom(short)"
+                    data-duration="1000"
+                    data-delay="650"
+                    data-ease="300"
+               ><a class="btn btn-bordered white anim"  style="left:7px; top:460px;" role="button">Buy Dale</a></p>
+                
+            </div>
+            <!-- end of slide -->
+            
+            <!-- slide 3 -->
+            <div class="ms-slide slide-video" style="z-index: 9" data-delay="8">
+                 
+            	<img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
+                
+                <video id="video1" class="video-js vjs-default-skin" poster="{$themeRoot}common/videos/CameraLens/poster.jpg"  muted="" autoplay="" loop="" preload="">
+                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.mp4" type='video/mp4' />
+                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.webm" type='video/webm' />
+                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.ogv" type='video/ogg' />
+                </video>
+                    
+               	<h2 class="ms-layer" style="left:390px; top:215px;"
+                    data-effect="right(200)"
+                    data-duration="3500"
+                    data-delay="100"
+                    data-ease="easeOutExpo"
+                >Custom Video Backgrounds</h2>
+                
+                <h1 class="ms-layer center"  style="left:0; top:276px" 
+                    data-effect="bottom(short)"
+                    data-duration="2500"
+                    data-delay="800"
+                    data-ease="easeOutExpo"
+                >Perfected Every Pixel</h1>
+                 
+              	<p class="ms-layer h4" style="left:91px; top:415px; width:460px;"
+                	data-effect="left(short)"
+                    data-duration="1200"
+                    data-delay="1200"
+                    data-ease="300"
+               >All videos you see in the preview are available in the 
+               download file along with stock photos!</p>
+                
+            </div>
+            <!-- end of slide -->
+            
+        </div> <!-- end of masterslider -->
+         
+        <a href="#firstSection"><i class="fa fa-chevron-down" id="go-down"></i></a>
+        
+    </div><!-- end of slider-wrapper -->

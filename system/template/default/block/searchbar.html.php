@@ -1,15 +1,9 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
-{if($isSearchAvaliable)}
-  <div id='searchbar' data-ve='search'>
-    <form action='{!helper::createLink('search')}' method='get' role='search'>
-      <div class='input-group'>
-        {$config->searchWordPlaceHolder}
-        {if($config->requestType == 'GET')} {!html::hidden($config->moduleVar, 'search') . html::hidden($config->methodVar, 'index')} {/if}
-        <div class='input-group-btn'>
-          <button class='btn btn-default' type='submit'><i class='icon icon-search'></i></button>
-        </div>
+    <div class="search-field">
+      <div class="container">
+        <form action='{!helper::createLink('search')}' method='get' role='search'>
+          <input type="text" name="words" id="words" value="" placeholder="输入并按回车键...">
+          <button type="submit" class="hidden btn btn-default">Submit</button>
+        </form>
       </div>
-    </form>
-  </div>
-{/if}
-
+    </div><!-- search-field -->
