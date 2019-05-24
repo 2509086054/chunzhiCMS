@@ -1453,12 +1453,13 @@ ul.pagination li a:hover {
 }
 
 .portfolio .filter {
-	height:110px;
+	/*height:110px;*/
 	text-align:center;
 }
 
 .portfolio .filter .btn {
-	margin-top:35px;
+	margin-top:10px;
+	padding: 5px 15px;
 }
 
 .portfolio .gallary {
