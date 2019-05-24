@@ -43,13 +43,13 @@ jQuery(document).ready(function($) {
 	
 	// Remove backstretch dependancy
 	if ( $.isFunction($.fn.backstretch) ) {
-		$(".slider-wrapper").backstretch(["theme/default/common/images/slider/slide-wrapper.jpg"]);
+		$(".slider-wrapper").backstretch(["/data/slides/slider/slide-wrapper.jpg"]);
 		if (window.devicePixelRatio >= 2) {
-			$("section.blur,.slug .overlay").backstretch(["theme/default/common/images/design/video-section-bg-retina.jpg"]);
-			$(".slug .overlay,section.fixed .overlay").backstretch(["theme/default/common/images/design/video-section-bg-opac-retina.png"]);
+			$("section.blur,.slug .overlay").backstretch(["/data/slides/videos/video-section-bg-retina.jpg"]);
+			$(".slug .overlay,section.fixed .overlay").backstretch(["/data/slides/videos/video-section-bg-opac-retina.png"]);
 		} else {
-			$("section.blur,.slug .overlay").backstretch(["theme/default/common/images/design/video-section-bg.jpg"]);
-			$(".slug .overlay,section.fixed .overlay").backstretch(["theme/default/common/images/design/video-section-bg-opac.png"]);
+			$("section.blur,.slug .overlay").backstretch(["/data/slides/videos/video-section-bg.jpg"]);
+			$(".slug .overlay,section.fixed .overlay").backstretch(["/data/slides/videos/video-section-bg-opac.png"]);
 		}
 	}
 	
@@ -75,8 +75,9 @@ jQuery(document).ready(function($) {
       overPause: false,
       width: 1024,
       height: sliderHeight,
-      grabCursor:false, //grab.png 404，故不用这个功能
-			view:"fade"
+			grabCursor:false, //grab.png 404，故不用这个功能
+			layout:"autofill"
+			//view:"fade"
     });
     // adds Arrows navigation control to the slider.
     slider.control('bullets', {

@@ -1,3 +1,14 @@
+{*
+/*
+ * @Description: 
+ * 本区块放在菜单之上没有问题，
+ * 放在菜单之下时，如果菜单内容较多，挤占空间，在ipad上长/宽会失常
+ * @Author: Alisa
+ * @Date: 2019-05-22 14:05:06
+ * @LastEditors: Alisa
+ * @LastEditTime: 2019-05-24 17:57:23
+ */
+*}
 <div class="slider-wrapper">
         
         <!-- masterslider -->
@@ -7,7 +18,7 @@
             <div class="ms-slide slide-1" style="z-index: 10" data-delay="8">
             	
                 <!-- slide background -->
-                <img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/image1.png" alt="lorem ipsum dolor sit" />
+                <img src="{$webRoot}data/slides/slider/transparent.png" data-src="{$webRoot}data/slides/slider/image1.png" alt="lorem ipsum dolor sit" />
                 
                 <h1 class="ms-layer center" style="left:0; top:25px;"
                     data-effect="rotatetop(-40,60,l)"
@@ -24,7 +35,7 @@
                 >The picture you paint will be the one they’ll see.</h2>
                 
                 <!-- iPhone mockup -->
-                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/iphone.png" alt="layer" class="ms-layer"
+                <img src="{$webRoot}data/slides/slider/blank.gif" data-src="{$webRoot}data/slides/slider/iphone.png" alt="layer" class="ms-layer"
                     style="top:280px; left:145px; width:797px; height:595px;" 
                     data-effect="bottom(100)"
                     data-duration="1200"
@@ -34,7 +45,7 @@
                 />
                 
                 <!-- First iPhone Screen Layer -->
-                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                <img src="{$webRoot}data/slides/slider/blank.gif" data-src="{$webRoot}data/slides/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
                     style="top:345px; left:295px; width:489px; height:303px;"
                     data-type="image"
                     data-delay="600"
@@ -48,7 +59,7 @@
                 />
                 
                 <!-- First iPhone Screen Layer -->
-                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                <img src="{$webRoot}data/slides/slider/blank.gif" data-src="{$webRoot}data/slides/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
                     style="top:345px; left:295px; width:489px; height:303px;"
                     data-type="image"
                     data-delay="3000"
@@ -62,7 +73,7 @@
                 />
                 
                  <!-- First iPhone Screen Layer -->
-                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
+                <img src="{$webRoot}data/slides/slider/blank.gif" data-src="{$webRoot}data/slides/slider/slide-1-iphonescreen-1.png" alt="layer" class="ms-layer"
                     style="top:345px; left:295px; width:489px; height:303px;"
                     data-type="image"
                     data-delay="4500"
@@ -76,7 +87,7 @@
                 />
                 
                 <!-- First iPhone Screen Layer -->
-                <img src="{$themeRoot}common/images/design/blank.gif" data-src="{$themeRoot}common/images/slider/slide-1-iphonescreen-3.png" alt="layer" class="ms-layer"
+                <img src="{$webRoot}data/slides/slider/blank.gif" data-src="{$webRoot}data/slides/slider/slide-1-iphonescreen-3.png" alt="layer" class="ms-layer"
                     style="top:345px; left:295px; width:489px; height:303px;"
                     data-type="image"
                     data-delay="6000"
@@ -92,7 +103,7 @@
             <div class="ms-slide slide-2" style="z-index: 11" data-delay="6">
           
                 <!-- slide background -->
-            	<img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
+            	<img src="{$webRoot}data/slides/slider/transparent.png" data-src="{$webRoot}data/slides/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
                  
                   <h2 class="ms-layer" style="left:7px; top:215px;"
                     data-effect="top(100)"
@@ -129,12 +140,12 @@
             <!-- slide 3 -->
             <div class="ms-slide slide-video" style="z-index: 9" data-delay="8">
                  
-            	<img src="{$themeRoot}common/images/design/transparent.png" data-src="{$themeRoot}common/images/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
+            	<img src="{$webRoot}data/slides/slider/transparent.png" data-src="{$webRoot}data/slides/slider/laptopglasses.png" alt="lorem ipsum dolor sit"/>  
                 
-                <video id="video1" class="video-js vjs-default-skin" poster="{$themeRoot}common/videos/CameraLens/poster.jpg"  muted="" autoplay="" loop="" preload="">
-                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.mp4" type='video/mp4' />
-                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.webm" type='video/webm' />
-                    <source src="{$themeRoot}common/videos/CameraLens/CameraLens.ogv" type='video/ogg' />
+                <video id="video1" class="video-js vjs-default-skin" poster="{$webRoot}data/slides/videos/CameraLens/poster.jpg"  muted="" autoplay="" loop="" preload="">
+                    <source src="{$webRoot}data/slides/videos/CameraLens/CameraLens.mp4" type='video/mp4' />
+                    <source src="{$webRoot}data/slides/videos/CameraLens/CameraLens.webm" type='video/webm' />
+                    <source src="{$webRoot}data/slides/videos/CameraLens/CameraLens.ogv" type='video/ogg' />
                 </video>
                     
                	<h2 class="ms-layer" style="left:390px; top:215px;"
