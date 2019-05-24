@@ -10,14 +10,7 @@
       </div>
       <div class="modal-body">
 {else}
-  {if($extView = $control->getExtViewFile(TPL_ROOT . 'common/header.html.php'))}
-    {include $extView}
-    {@return helper::cd()}
-  {/if}
   {include $control->loadModel('ui')->getEffectViewFile('default', 'common', 'header.lite')}
-  <div class='page-container'>
-    <div class='blocks' data-region='all-top'>{$control->block->printRegion($layouts, 'all', 'top')}</div>
-    <div class='page-wrapper'>
-      <div class='page-content'>
-        <div class='blocks row' data-region='all-banner'>{$control->block->printRegion($layouts, 'all', 'banner', true)}</div>
+  {$control->block->printRegion($layouts, 'all', 'top')}
+  {$control->block->printRegion($layouts, 'all', 'banner')}
 {/if}

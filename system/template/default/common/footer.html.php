@@ -1,65 +1,102 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
-  <div class='blocks all-bottom row' data-region='all-bottom'>
-  {!$control->block->printRegion($layouts, 'all', 'bottom', true)}
-  </div>
-  </div></div>
-  {* End div.page-content then div.page-wrapper in header.html.php *}
-  <footer id='footer' class='clearfix'>
-    <div class='wrapper'>
-      <div id='footNav'>
-        {!html::a(helper::createLink('sitemap', 'index'), '<i class=\'icon-sitemap\'></i> ' . $lang->sitemap->common, "class='text-linki'")}
-        {if(empty($config->links->index) && !empty($config->links->all))}
-        {!html::a(helper::createLink('links', 'index'), "<i class='icon-link'></i> " . $lang->link)}
-        {/if}
-      </div>
-      <span id='copyright'>
-       {$copyright=empty($config->site->copyright) ? '' : $config->site->copyright . '-'}
-       {$contact=json_decode($config->company->contact)}
-       {$company=(empty($contact->site) or $contact->site == $control->server->http_host) ? $config->company->name : html::a('http://' . $contact->site, $config->company->name, "target='_blank'")}
-       &copy; {$copyright} {!echo date('Y')} {$company} &nbsp;&nbsp;
-      </span>
-      <span id='icpInfo'>
-        {if(!empty($config->site->icpLink) and !empty($config->site->icpSN))}
-          {!html::a(strpos($config->site->icpLink, 'http://') !== false ? $config->site->icpLink : 'http://' . $config->site->icpLink, $config->site->icpSN, "target='_blank'")}
-        {/if}
-        {if(empty($config->site->icpLink) and !empty($config->site->icpSN))}
-          {$config->site->icpSN}
-        {/if}
-        {if(!empty($config->site->policeLink) and !empty($config->site->policeSN))}
-          {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::image($webRoot . 'theme/default/default/images/main/police.png'), "target='_blank'")}
-        {/if}
-      </span>
-      <div id='powerby'>
-          {!commonModel::printPowerdBy()}
-      </div>
-      {if($config->site->execInfo == 'show')} {$config->execPlaceholder} {/if}
-    </div>
-  </footer>
-  {if($config->debug)}
-    {!js::import($jsRoot . 'jquery/form/min.js')}
-  {/if}
-  {if(isset($pageJS))}
-  {!js::execute($pageJS)}
-  {/if}
-  {$extPath=TPL_ROOT . 'common' . DS . 'ext' . DS}
-  {$extHookRule=$extPath . 'footer.front.*.hook.php'}
-  {$extHookFiles=glob($extHookRule)}
-  {foreach($extHookFiles as $hook)}
-  {include $hook}
-  {/foreach}
-<a href='#' id='go2top' class='icon-arrow-up' data-toggle='tooltip' title='{$lang->back2Top}'></a>
-</div>{* end "div.page-container" in "header.html.php" *}
-{$qrcodeTpl=$control->loadModel('ui')->getEffectViewFile('default', 'common', 'qrcode')}
-{include $qrcodeTpl}
-<div class='hide'>{!$control->loadModel('block')->printRegion($layouts, 'all', 'footer')}</div>
-{if(commonModel::isAvailable('shop'))}
-  {$cartTpl=TPL_ROOT . 'common/cart.html.php'}
-  {include $cartTpl}
+{!$control->block->printRegion($layouts, 'all', 'bottom', true)}
+<footer class="classic">
+  <section class="content-section parallax-bg-3" data-stellar-background-ratio=".15">
+    <div class="foot-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 anim fadeInLeft">
+          </div><!-- .col-lg-3 -->
+
+          <div class="col-md-3 anim fadeInLeft">
+          </div><!-- .col-lg-3 -->
+
+          <div class="col-md-3">
+          </div><!-- .col-lg-3 -->
+
+          <div class="col-md-3 anim fadeInRight">
+          </div><!-- .col-lg-3 -->
+        </div><!-- .row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <span class="copyright">
+              {$copyright=empty($config->site->copyright) ? '' : $config->site->copyright . '-'}
+              {$contact=json_decode($config->company->contact)}
+              {$company=(empty($contact->site) or $contact->site == $control->server->http_host) ? $config->company->name : html::a('http://' . $contact->site, $config->company->name, "target='_blank'")}
+              copyright&copy; &nbsp;&nbsp;{$copyright} {!echo date('Y')} {$company} &nbsp;&nbsp;
+            </span>
+            <span class="miitbeian">
+              {if(!empty($config->site->icpLink) and !empty($config->site->icpSN))}
+              {!html::a(strpos($config->site->icpLink, 'http://') !== false ? $config->site->icpLink : 'http://' . $config->site->icpLink, $config->site->icpSN, "target='_blank'")}
+              {/if}
+              {if(empty($config->site->icpLink) and !empty($config->site->icpSN))}
+              {$config->site->icpSN}
+              {/if}
+              {if(!empty($config->site->policeLink) and !empty($config->site->policeSN))}
+              {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::image($webRoot . 'theme/default/default/images/main/police.png'),"target='_blank'")}
+              {/if}
+            </span>
+          </div><!-- .col-lg-12 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+    </div><!-- .foot-wrapper -->
+  </section><!-- .content-section -->
+
+</footer>
+
+{* All JavaScript Loading begin *}
+
+{if($config->debug)}
+<!-- All JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery-1.11.0.min.js')}
+<!-- Easing core JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.easing.1.3.js')}
+<!-- Bootstrap core JavaScript -->
+{!js::import($themeRoot . 'common/js/bootstrap.min.js')}
+<!-- Master slider core JavaScript -->
+{!js::import($themeRoot . 'common/js/masterslider.min.js')}
+<!-- Master slider staff core JavaScript -->
+{!js::import($themeRoot . 'common/js/masterslider.staff.carousel.dev.js')}
+<!-- WOW core JavaScript -->
+{!js::import($themeRoot . 'common/js/wow.min.js')}
+<!-- Waypoints core JavaScript -->
+{!js::import($themeRoot . 'common/js/waypoints.min.js')}
+<!-- Underscore core JavaScript -->
+{!js::import($themeRoot . 'common/js/underscore-min.js')}
+<!-- jQuery Backstretch core -->
+{!js::import($themeRoot . 'common/js/jquery.backstretch.min.js')}
+<!-- jQuery color core JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.animation.js')}
+<!-- Isotope core JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.isotope.min.js')}
+<!-- Stellar core JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.stellar.min.js')}
+<!-- Contact core JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.contact.min.js')}
+<!-- NiceScroll core Javascript -->
+{!js::import($themeRoot . 'common/js/jquery.nicescroll.min.js')}
+<!-- Retina core JavaScript -->
+{*!js::import($themeRoot . 'common/js/retina-1.1.0.min.js')*}
+<!-- Nivo Slider JavaScript -->
+{!js::import($themeRoot . 'common/js/jquery.nivo.slider.pack.js')}
+<!-- Video core JavaScript -->
+{!js::import($themeRoot . 'common/js/video.js')}
+<!-- OWL Carousel core JavaScript -->
+{!js::import($themeRoot . 'common/js/owl.carousel.min.js')}
+<!-- Lightbox core JavaScript -->
+{!js::import($themeRoot . 'common/js/lightbox.min.js')}
+<!-- Everything else -->
+{!js::import($themeRoot . 'common/js/custom.js')}
+{else}
+{if($cdnRoot)}
+{!js::import($cdnRoot . '/js/chanzhi.all.js', $version = false)}
+{else}
+{!js::import($jsRoot . 'chanzhi.all.js')}
 {/if}
-{$logTpl=TPL_ROOT . 'common/log.html.php';}
-{include $logTpl}
-{if($app->user->account != 'guest' and commonModel::isAvailable('score') and (!isset($config->site->resetMaxLoginDate) or $config->site->resetMaxLoginDate < date('Y-m-d')))}
-  <script>$.get(createLink('score', 'resetMaxLogin'));</script>
 {/if}
+
+{* All JavaScript Loading end *}
 </body>
+
 </html>
