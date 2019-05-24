@@ -43,18 +43,71 @@ jQuery(document).ready(function($) {
 	
 	// Remove backstretch dependancy
 	if ( $.isFunction($.fn.backstretch) ) {
-		$(".slider-wrapper").backstretch(["images/slider/slide-wrapper.jpg"]);
+		$(".slider-wrapper").backstretch(["theme/default/common/images/slider/slide-wrapper.jpg"]);
 		if (window.devicePixelRatio >= 2) {
-			$("section.blur,.slug .overlay").backstretch(["images/design/video-section-bg-retina.jpg"]);
-			$(".slug .overlay,section.fixed .overlay").backstretch(["images/design/video-section-bg-opac-retina.png"]);
+			$("section.blur,.slug .overlay").backstretch(["theme/default/common/images/design/video-section-bg-retina.jpg"]);
+			$(".slug .overlay,section.fixed .overlay").backstretch(["theme/default/common/images/design/video-section-bg-opac-retina.png"]);
 		} else {
-			$("section.blur,.slug .overlay").backstretch(["images/design/video-section-bg.jpg"]);
-			$(".slug .overlay,section.fixed .overlay").backstretch(["images/design/video-section-bg-opac.png"]);
+			$("section.blur,.slug .overlay").backstretch(["theme/default/common/images/design/video-section-bg.jpg"]);
+			$(".slug .overlay,section.fixed .overlay").backstretch(["theme/default/common/images/design/video-section-bg-opac.png"]);
 		}
 	}
 	
 	// Remove the master slider's dependancy
 	if ( typeof MasterSlider === 'function' ) {
+
+		/************************
+     ****** MasterSlider *****
+     *************************/
+    // Calibrate slider's height
+    var sliderHeight = 790; // Smallest hieght allowed (default height)
+    if ($('#masterslider').data('height') == 'fullscreen') {
+      var winHeight = $(window).height();
+      sliderHeight = winHeight > sliderHeight ? winHeight : sliderHeight;
+    }
+
+    // Initialize the main slider
+    var slider = new MasterSlider();
+    slider.setup('masterslider', {
+      space: 0,
+      fullwidth: true,
+      autoplay: true,
+      overPause: false,
+      width: 1024,
+      height: sliderHeight,
+      grabCursor:false, //grab.png 404，故不用这个功能
+			view:"fade"
+    });
+    // adds Arrows navigation control to the slider.
+    slider.control('bullets', {
+      autohide: false,
+      dir: "h"
+    });
+
+		// team slider
+    var teamslider = new MasterSlider();
+    teamslider.setup('teamslider', {
+      loop: true,
+      width: 300,
+      height: 290,
+      speed: 20,
+      view: 'stffade',
+      grabCursor: false,
+      preload: 0,
+      space: 29
+    });
+    teamslider.control('slideinfo', {
+      insertTo: '#staff-info'
+    });
+
+    $(".team .ms-nav-next").click(function() {
+      teamslider.api.next();
+    });
+
+    $(".team .ms-nav-prev").click(function() {
+      teamslider.api.previous();
+		});
+		
 		// Laptop slider
 		var testimonials = new MasterSlider();
 		testimonials.setup('testimonials' , {
