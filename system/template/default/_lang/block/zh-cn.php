@@ -9,7 +9,9 @@
  * @version     $Id$
  * @link        http://www.chanzhi.org
  */
-if(!isset($lang->block->default)) $lang->block->default = new stdclass();
+if (!isset($lang->block->default)) {
+    $lang->block->default = new stdclass();
+}
 $lang->block->default->typeList['html']      = '自定义区块';
 $lang->block->default->typeList['htmlcode']  = 'html源代码';
 $lang->block->default->typeList['phpcode']   = 'php源代码';
@@ -107,7 +109,9 @@ $lang->block->default->pages['message_index']  = '留言';
 $lang->block->default->pages['page_view']      = '单页';
 
 /* page layout list. */
-if(!isset($lang->block->default->regions)) $lang->block->default->regions = new stdclass();
+if (!isset($lang->block->default->regions)) {
+    $lang->block->default->regions = new stdclass();
+}
 
 $lang->block->default->regions->all['header'] = 'Header';
 $lang->block->default->regions->all['top']    = '页头';
@@ -186,7 +190,9 @@ $lang->block->default->regions->page_view['bottom']       = '底部';
 $lang->block->default->regions->page_view['side']         = '侧边';
 $lang->block->default->regions->page_view['bottomBanner'] = '底部通栏';
 
-if(!isset($lang->block->headerLayout)) $lang->block->headerLayout = new stdclass();
+if (!isset($lang->block->headerLayout)) {
+    $lang->block->headerLayout = new stdclass();
+}
 $lang->block->headerLayout->compatibleEnable = '兼容老版本头部';
 
 $lang->block->headerLayout->nav = array();
@@ -202,21 +208,27 @@ $lang->block->headerLayout->searchbar['besideSlogan'] = '站点口号右侧';
 $lang->block->headerLayout->searchbar['topRight']     = '右上角';
 $lang->block->headerLayout->searchbar['insideNav']    = '导航右侧';
 
-if(!isset($lang->block->default->layout)) $lang->block->default->layout = new stdclass();
+if (!isset($lang->block->default->layout)) {
+    $lang->block->default->layout = new stdclass();
+}
 
 $lang->block->default->layout->all = array();
 $lang->block->default->layout->all[] = array('type' => 'invisible', 'name' => 'header', 'title' => 'Head（不可见）');
 $lang->block->default->layout->all[] = array('type' => 'container', 'name' => 'top');
-$lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'banner');
+//$lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'banner');
+$lang->block->default->layout->all[] = array('type' => 'container', 'name' => 'banner');
 $lang->block->default->layout->all[] = array('type' => 'placeholder', 'name' => 'main');
 $lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'bottom');
 $lang->block->default->layout->all[] = array('type' => 'invisible', 'name' => 'footer', 'title' => 'Footer（不可见）');
 
 $lang->block->default->layout->index_index = array();
 $lang->block->default->layout->index_index[] = array('type' => 'placeholder', 'name' => 'page_header');
-$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'top');
-$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'middle');
-$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'bottom');
+//$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'top');
+//$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'middle');
+//$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'bottom');
+$lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'top');
+$lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'middle');
+$lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'bottom');
 $lang->block->default->layout->index_index[] = array('type' => 'placeholder', 'name' => 'page_footer');
 
 $lang->block->default->layout->company_index = array();
