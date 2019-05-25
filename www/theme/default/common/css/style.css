@@ -1509,8 +1509,9 @@ a#desc span i.fa {
 a#desc span.desc span.title,
 a#desc span.desc span.subtitle {
 	text-align:center;
-	line-height:0;
-	top:78%;
+	/*line-height:0;*/
+	/*top:78%;*/
+	top:10%;
 	width:100%;
 	position:relative;
 	font-size:18px;
