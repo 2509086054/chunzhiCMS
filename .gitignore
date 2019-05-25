@@ -1,4 +1,5 @@
-/system/tmp
-/www/data
-/www/xuanxuan
-/www/zui
+/system/tmp/cache
+/system/tmp/log/*.*
+*.mp4
+*.ogv
+*.webm

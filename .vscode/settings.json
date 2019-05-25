@@ -1,6 +1,8 @@
 {
-  "workbench.colorTheme": "Solarized Light",
-  "workbench.iconTheme": "vscode-icons",
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "newUntitledFile",
   //配置eslint
   "eslint.autoFixOnSave": true,
   "files.autoSave": "off",
@@ -8,17 +10,100 @@
     "javascript",
     "javascriptreact",
     "html",
-    { "language": "html", "autoFix": true },
-    { "language": "vue", "autoFix": true }
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "autoFix": true,
+      "language": "javascript"
+    }
   ],
   "eslint.options": {
     "plugins": ["html"]
   },
   //为了符合eslint的两个空格间隔原则
   "editor.tabSize": 2,
-  "terminal.integrated.rendererType": "dom",
+  "workbench.iconTheme": "vscode-icons",
+  "window.zoomLevel": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": false, // only if you want auto      //fomattting on saving the file
+  "editor.detectIndentation": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": true,
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
+  "files.exclude": {
+    "**/node_modules": true,
+    ".gitignore": true,
+    ".eslintignore": true,
+    ".eslintrc.js": false,
+    ".babelrc": true,
+    ".editorconfig": true,
+    ".postcssrc.js": true,
+    ".jshintrc": true,
+    "build": true,
+    "config": true
+  },
+  "attrsSorter.order": [
+    "is",
+    "v-for",
+    "v-if",
+    "v-else-if",
+    "v-else",
+    "v-show",
+    "v-cloak",
+    "v-once",
+    "v-pre",
+    "id",
+    "ref",
+    "key",
+    "slot",
+    "v-model",
+    "v-model.+",
+    "v-bind",
+    "v-bind.+",
+    ":.+",
+    "v-text",
+    "v-text.+",
+    "v-html",
+    "v-html.+",
+    "class",
+    "v-on.+",
+    "@.+",
+    "name",
+    "data-.+",
+    "ng-.+",
+    "src",
+    "for",
+    "type",
+    "href",
+    "values",
+    "title",
+    "alt",
+    "role",
+    "aria-.+",
+    "$unknown$"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.eslintIntegration": true,
+  "prettier.disableLanguages": [],
+  "prettier.semi": true, //行尾强制分号结束
   "breadcrumbs.enabled": true,
-  "workbench.editor.enablePreview": false,
+  "git.autofetch": true,
+  "workbench.colorTheme": "Solarized Light",
+  "tslint.configFile": "tslint.json",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.rendererType": "dom",
   "vsicons.dontShowNewVersionMessage": true,
   "php.validate.executablePath":"D:/xampp/php/php.exe",
   "php.suggest.basic": false,　　// 插件作者建议禁用VS代码内置的PHP智能感知设置php.suggest.basic，以false避免重复的建议
@@ -29,10 +114,10 @@
     "Date": "Do not edit", // 文件创建时间(不变)
     "LastEditors": "Alisa", // 文件最后编辑者
     "LastEditTime": "Do not edit" // 文件最后编辑时间
-  }, 
+  },
   "fileheader.cursorMode": { // 函数注释,使用快捷键window：ctrl+alt+t,mac：ctrl+cmd+t，即可生成函数注释。
-    "Description":"", 
-    "param ":"{type}", 
+    "Description":"",
+    "param ":"{type}",
     "return":"",
     "Author":"Alisa",
     "Date": "Do not edit", // 文件创建时间(不变)
@@ -51,5 +136,4 @@
   "php-cs-fixer.autoFixBySemicolon": false,
   "php-cs-fixer.formatHtml": false,
   "php-cs-fixer.documentFormattingProvider": true
-
 }
