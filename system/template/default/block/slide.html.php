@@ -6,7 +6,7 @@
  * @Author: Alisa
  * @Date: 2019-05-22 14:05:06
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-24 17:57:23
+ * @LastEditTime: 2019-05-25 13:55:43
  */
 *}
 <div class="slider-wrapper">
@@ -175,6 +175,6 @@
             
         </div> <!-- end of masterslider -->
          
-        <a href="#firstSection"><i class="fa fa-chevron-down" id="go-down"></i></a>
+        <a href="#firstSection"><i class="fa fa-chevron-down" style="display:block" id="go-down"></i></a>
         
     </div><!-- end of slider-wrapper -->
