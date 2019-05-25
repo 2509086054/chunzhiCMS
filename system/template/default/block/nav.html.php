@@ -11,7 +11,7 @@
       <li class="{if($i == 0)} active {/if}">{!html::a($nav1->url, $nav1->title, "target='$nav1->target'")}</li>
       {else}
       <li class="{if($i == 0)} active {/if} dropdown h">
-        {!html::a($nav1->url, $nav1->title, '')}
+        {!html::a('#', $nav1->title, '')}
         <ul class="dropdown-menu">
         <!-- 二级菜单 -->        
         {foreach($nav1->children as $nav2)}
