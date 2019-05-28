@@ -160,17 +160,17 @@ $lang->js->bindWechatTip    = '发帖功能设置了绑定微信的限制，请�
 /* Contact fields*/
 $lang->company = new stdclass();
 $lang->company->contactUs = '联系我们';
-$lang->company->contacts  = '联系人';
-$lang->company->address   = '地址';
+$lang->company->user  = '联系人'; //contacts
+$lang->company->car   = '地址'; //address
 $lang->company->phone     = '电话';
-$lang->company->email     = 'Email';
+$lang->company->envelope     = 'Email'; //email
 $lang->company->fax       = '传真';
 $lang->company->qq        = 'QQ';
 $lang->company->skype     = 'Skype';
 $lang->company->weibo     = '微博';
 $lang->company->weixin    = '微信';
-$lang->company->wangwang  = '旺旺';
-$lang->company->site      = '网址';
+$lang->company->comments  = '旺旺'; //wangwang
+$lang->company->share      = '网址'; //site
 
 /* Sitemap settings. */
 $lang->sitemap = new stdclass();

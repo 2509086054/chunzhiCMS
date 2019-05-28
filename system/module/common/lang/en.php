@@ -160,17 +160,17 @@ $lang->js->bindWechatTip    = 'Posting sets the limit for binding WeChat. Please
 /* Contact fields*/
 $lang->company = new stdclass();
 $lang->company->contactUs = 'Contact Us';
-$lang->company->contacts  = 'Contact';
-$lang->company->address   = 'Address';
+$lang->company->user  = 'Contact'; //contacts
+$lang->company->car   = 'Address'; //address
 $lang->company->phone     = 'Phone';
-$lang->company->email     = 'Email';
+$lang->company->envelope     = 'Email'; //email
 $lang->company->fax       = 'Fax';
 $lang->company->qq        = 'QQ';
 $lang->company->skype     = 'Skype';
 $lang->company->weibo     = 'Weibo';
 $lang->company->weixin    = 'Wechat';
-$lang->company->wangwang  = 'wangwang';
-$lang->company->site      = 'Website';
+$lang->company->comments  = 'wangwang'; //wangwang
+$lang->company->share      = 'Website'; //site
 
 /* Sitemap settings. */
 $lang->sitemap = new stdclass();
