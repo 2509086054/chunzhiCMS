@@ -82,7 +82,7 @@ class helper extends baseHelper
                 return $link;
             }
         }
-        
+
         /* Set the view type. */
         if (empty($viewType)) {
             $viewType = $app->getViewType();
@@ -155,11 +155,11 @@ class helper extends baseHelper
         $memoryUsage = memory_get_peak_usage(true);
         $memoryUsage = number_format(round($memoryUsage / 1024 / 1024, 2), 2);
 
-        $html = "<span style='cursor:pointer;' id='execIcon'><i class='icon icon-dashboard'> </i></span>";
+        $html = "<span class='pull-right' style='cursor:pointer;color: #fff;' id='execIcon' data-toggle='tooltip'><i class='fa fa-dashboard'> </i></span>";
         if ($app->clientDevice == 'desktop') {
             $html .= sprintf($lang->execInfo, count(dao::$querys), $memoryUsage . 'MB', $execTime);
             $html .= '<script>';
-            $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'right'}); }); ";
+            $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'left'}); }); ";
             $html .= '</script>';
         }
 
