@@ -482,12 +482,23 @@ class js
     public static function import($url, $version = true)
     {
         global $config;
-
         if($version)
         {
             $pathInfo = parse_url($url);
             $mark  = !empty($pathInfo['query']) ? '&' : '?';
             $url = "$url{$mark}v={$config->version}";
+        }
+        /**
+         * @Description:
+         * debug时，js加入时间戳
+         * @Author: Alisa
+         * @LastEditors: Alisa
+         * @LastEditTime: Do not edit
+         * @Date: 2019-05-29 10:48:35
+         */
+        if($config->debug){
+            $timeStamp = strtotime('now');
+            $url .= "{$mark}t={$timeStamp}";
         }
 
         echo "<script src='$url' type='text/javascript'></script>\n";
@@ -817,6 +828,18 @@ class css
         global $config;
         if(!empty($attrib)) $attrib = ' ' . $attrib;
         if($version) $url = "$url?v={$config->version}";
+        /**
+         * @Description:
+         * debug时，css加入时间戳
+         * @Author: Alisa
+         * @LastEditors: Alisa
+         * @LastEditTime: Do not edit
+         * @Date: 2019-05-29 10:48:35
+         */
+        if($config->debug){
+            $timeStamp = strtotime('now');
+            $url .= "?t={$timeStamp}";
+        }
         echo "<link rel='stylesheet' href='$url' type='text/css' media='screen'{$attrib}/>\n";
     }
 
