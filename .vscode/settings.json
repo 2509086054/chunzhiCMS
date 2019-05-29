@@ -124,7 +124,7 @@
     "LastEditors": "Alisa", // 文件最后编辑者
     "LastEditTime": "Do not edit" // 文件最后编辑时间
   },
-  "php-cs-fixer.executablePath": "C:/Users/pc/.vscode/extensions/junstyle.php-cs-fixer-0.1.119/php-cs-fixer.phar",
+  "php-cs-fixer.executablePath": "C:/Users/lemon/.vscode/extensions/junstyle.php-cs-fixer-0.1.119/php-cs-fixer.phar",
   "php-cs-fixer.executablePathWindows": "",   //eg: php-cs-fixer.bat
   "php-cs-fixer.onsave": true,
   "php-cs-fixer.rules": "@PSR2",
