@@ -1,4 +1,5 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
+{* createLink 在 chanzhi.js 中 *}
 {if(commonModel::isAvailable('stat'))}
 <script>
 var hash = window.location.hash.substring(1);
