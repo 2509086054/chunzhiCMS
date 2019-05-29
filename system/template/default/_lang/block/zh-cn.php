@@ -17,6 +17,8 @@ $lang->block->default->typeList['htmlcode']  = 'html源代码';
 $lang->block->default->typeList['phpcode']   = 'php源代码';
 $lang->block->default->typeList['baidustat'] = '百度统计';
 $lang->block->default->typeList['tabs']      = '组合区块';
+$lang->block->default->typeList['DaleCompany']      = '【Dale模板】公司信息';
+$lang->block->default->typeList['DaleLinks']      = '【Dale模板】友情链接';
 
 $lang->block->default->typeList['latestArticle']   = '最新文章';
 $lang->block->default->typeList['hotArticle']      = '热门文章';
@@ -52,6 +54,8 @@ $lang->block->default->typeGroups['html']      = 'input';
 $lang->block->default->typeGroups['htmlcode']  = 'input';
 $lang->block->default->typeGroups['phpcode']   = 'input';
 $lang->block->default->typeGroups['baidustat'] = 'input';
+$lang->block->default->typeGroups['DaleCompany'] = 'input';
+$lang->block->default->typeGroups['DaleLinks'] = 'input';
 
 $lang->block->default->typeGroups['latestArticle'] = 'article';
 $lang->block->default->typeGroups['hotArticle']    = 'article';
@@ -117,6 +121,8 @@ $lang->block->default->regions->all['header'] = 'Header';
 $lang->block->default->regions->all['top']    = '页头';
 $lang->block->default->regions->all['banner'] = 'Banner';
 $lang->block->default->regions->all['bottom'] = '页尾';
+$lang->block->default->regions->all['all_bottom_regionRow1'] = '公司信息';
+$lang->block->default->regions->all['all_bottom_regionRow2'] = '友情链接';
 $lang->block->default->regions->all['footer'] = 'Footer';
 
 $lang->block->default->regions->index_index['top']     = '上部';
@@ -218,7 +224,20 @@ $lang->block->default->layout->all[] = array('type' => 'container', 'name' => 't
 //$lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'banner');
 $lang->block->default->layout->all[] = array('type' => 'container', 'name' => 'banner');
 $lang->block->default->layout->all[] = array('type' => 'placeholder', 'name' => 'main');
-$lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'bottom');
+//$lang->block->default->layout->all[] = array('type' => 'grid', 'name' => 'bottom');
+//1、对象的定义从内向外，先定义最内层的region
+$all_bottom_regionRow1 = array('type' => 'grid', 'name' => 'all_bottom_regionRow1');
+$all_bottom_regionRow2 = array('type' => 'container', 'name' => 'all_bottom_regionRow2');
+//2、分组,定义name,用children属性包含最内层的region：
+$all_bottom_Region1 = array('type' => 'container', 'name' => 'all_bottom_Region1','children' => array());
+$all_bottom_Region1['children'][] = $all_bottom_regionRow1;
+$all_bottom_Region1['children'][] = $all_bottom_regionRow2;
+//3、把2个数组包装到1个数组中：
+$all_bottom_children = array();
+$all_bottom_children[] = $all_bottom_Region1;
+//4、定义最外层的 region
+$lang->block->default->layout->all[] = array('type' => 'row', 'name' => 'bottom','children' => $all_bottom_children);
+
 $lang->block->default->layout->all[] = array('type' => 'invisible', 'name' => 'footer', 'title' => 'Footer（不可见）');
 
 $lang->block->default->layout->index_index = array();
@@ -228,7 +247,7 @@ $lang->block->default->layout->index_index[] = array('type' => 'placeholder', 'n
 //$lang->block->default->layout->index_index[] = array('type' => 'grid', 'name' => 'bottom');
 $lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'top');
 $lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'middle');
-$lang->block->default->layout->index_index[] = array('type' => 'container', 'name' => 'bottom');
+$lang->block->default->layout->index_index[] = array('type' => 'main', 'name' => 'bottom');
 $lang->block->default->layout->index_index[] = array('type' => 'placeholder', 'name' => 'page_footer');
 
 $lang->block->default->layout->company_index = array();
