@@ -13,7 +13,7 @@ $config->block->require->create = 'title, template';
 $config->block->require->edit   = 'title';
 
 $config->block->categoryList = new stdclass();
-$config->block->categoryList->custom  = ',html,htmlcode,phpcode,baidustat,tabs,';
+$config->block->categoryList->custom  = ',html,htmlcode,phpcode,baidustat,tabs,DaleCompany,DaleLinks,';
 $config->block->categoryList->article = ',latestArticle,hotArticle,latestBlog,latestThread,pageList,articleTree,blogTree,latestBook,';
 $config->block->categoryList->product = ',latestProduct,hotProduct,featuredProduct,productTree,';
 $config->block->categoryList->system  = ',contact,message,followUs,about,links,slide,header,bottomNav,subscribe,login,';
