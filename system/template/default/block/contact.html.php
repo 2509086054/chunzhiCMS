@@ -1,37 +1,29 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
 {*
-/**
- * The contact front view file of block module of chanzhiEPS.
- *
- * @copyright   Copyright 2009-2015 青岛易软天创网络科技有限公司(QingDao Nature Easy Soft Network Technology Co,LTD, www.cnezsoft.com)
- * @license     ZPLV12 (http://zpl.pub/page/zplv12.html)
- * @author      Yidong wang <yidong@cnezsoft.com>
- * @package     block
- * @version     $Id$
- * @link        http://www.chanzhi.org
-*/
+/*
+ * @Description: file content
+ * @Author: Alisa
+ * @Date: 2019-05-25 20:37:25
+ * @LastEditors: Alisa
+ * @LastEditTime: 2019-05-29 11:30:23
+ */
 *}
-
 {$block->content = json_decode($block->content)}
 {$contact = $model->loadModel('company')->getContact()}
-
-<div id="block{!echo $block->id}" class='panel-block-contact panel panel-block {!echo $blockClass}'>
-  <div class='panel-heading'>
-    <strong>{!echo $icon . $block->title}</strong>
+<div class="col-lg-5">
+  <!-- contact 联系我们 -->
+  <h5><i class="fa fa-rss"></i>{!echo $icon . $block->title}</h5>
+  <div class="contact-info">
     {if(!empty($block->content->moreText) and !empty($block->content->moreUrl))}
-    <div class='pull-right'>{!html::a($block->content->moreUrl, $block->content->moreText)}</div>
+      <p>
+      {!html::a($block->content->moreUrl, $block->content->moreText)}
+      </p>
     {/if}
+    {foreach($contact as $item => $value)}
+    <span>
+      <i class="fa fa-{!echo $item}"></i>
+      {!echo $lang->company->$item . $lang->colon . $value}
+    </span>
+    {/foreach}
   </div>
-  <div class='panel-body'>
-    <div id='companyContact{!echo $block->id}' data-ve='companyContact'>
-      <table class='table table-data'>
-        {foreach($contact as $item => $value)}
-        <tr>
-          <th>{!echo $lang->company->$item . $lang->colon}</th>
-          <td>{!echo $value}</td>
-        </tr>
-        {/foreach}
-      </table>
-    </div>
-  </div>
-</div>
+</div><!-- .col-lg-5 -->
