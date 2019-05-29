@@ -59,11 +59,11 @@
           <td><?php echo html::input('comments', isset($contact->comments) ? $contact->comments : '', "class='form-control'");?></td><td></td>
         </tr>
         <tr>
-          <th><?php echo $lang->company->share;?></th>
+          <th><?php echo $lang->company->internetexplorer;?></th>
           <td>
             <div class="input-group">
               <span class="input-group-addon">http://</span>
-              <?php echo html::input('share', isset($contact->share) ? $contact->share : '', "class='form-control'");?>
+              <?php echo html::input('sitemap', isset($contact->sitemap) ? $contact->sitemap : '', "class='form-control'");?>
             </div>
           </td><td></td>
         </tr>
