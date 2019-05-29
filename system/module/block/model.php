@@ -717,7 +717,36 @@ class blockModel extends model
     {
         if(!isset($blocks[$method][$region])) return '';
         $blocks = $blocks[$method][$region];
-
+        /**
+         * 获取block信息，由eps_block和eps_layout共同生成
+            $block=Array(
+                [0] => stdClass Object(
+                    // eps_block 表
+                    [id] => 237
+                    [title] => 总的产品介绍（Dale）
+                    [type] => htmlcode
+                    [content] =>
+                    {
+                        "customImage":null,
+                        "topLeftContent":"",
+                        "topRightContent":"",
+                        "custom":{
+                            "default":{
+                                "css":"#blockID\n{\n  \/*.panel-heading {}*\/\n  \/*.panel-body    {}*\/\n}",
+                                "js":""
+                            }
+                        },
+                        "content":"<section class=\"content-section anim fadeInDown\" data-wow-delay=\"0.25s\">\n  <div class=\"container\">\n    <h1><i class=\"fa fa-pencil\"><\/i>\u7626\u8eab\u51cf\u80a5\u5065\u5eb7 <span>\u4ea7\u54c1<\/span><\/h1>\n    <p>We offer many various services at Dale! We will list a few right here, right now just to show you how incredibly awesome we are at our company!<\/p>\n  <\/div>\n<\/section><!-- .\u4ea7\u54c1\u4ecb\u7ecd end -->"
+                    }
+                    // eps_layout 表
+                    [template] => default
+                    [grid] => 4
+                    [isRandom] => 0
+                    [titleless] => 0
+                    [borderless] => 0
+                )
+            )
+         */
         foreach($blocks as $block)
         {
             if($this->config->cache->type != 'close')
@@ -849,7 +878,7 @@ class blockModel extends model
      * @return string
      */
      /**
-      * @Description: 
+      * @Description:
       * 对 $style 初始值及返回值进行控制
       * 防止空的<style></style>出现在HTML中
       * @Author: Alisa
