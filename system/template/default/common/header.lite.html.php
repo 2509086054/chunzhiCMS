@@ -18,7 +18,7 @@
   {else}
     {if(isset($canonicalURL))} <link rel="canonical" href="{$sysURL}/{$canonicalURL}" > {/if}
   {/if}
-  {if($thisModuleName == 'user' and $thisMethodName == 'deny')} <meta http-equiv='refresh' content="5;url={!helper::createLink('index')}"> {/if} 
+  {if($thisModuleName == 'user' and $thisMethodName == 'deny')} <meta http-equiv='refresh' content="5;url={!helper::createLink('index')}"> {/if}
 
   {if(!isset($title))}   {$title    = ''} {/if}
   {if(!empty($title))}   {$title   .= $lang->minus} {/if}
@@ -32,14 +32,14 @@
 
   {if($config->debug)}<!-- config.debug -->
     <!-- Bootstrap core CSS -->
-    {!css::import($themeRoot . 'common/css/bootstrap.css')}
+    {!css::import($themeRoot . 'common/css/bootstrap.3.1.css')}
       <!-- Primary CSS styles -->
     {!css::import($themeRoot . 'common/css/style.css')}
       <!-- Masterslider CSS styles -->
     {!css::import($themeRoot . 'common/css/masterslider/masterslider.css')}
     {!css::import($themeRoot . 'common/css/masterslider/skins/black-1/style.css')}
       <!-- Fontawesome CSS styles -->
-    {!css::import($themeRoot . 'common/css/font-awesome.min.css')}
+    {!css::import($themeRoot . 'common/css/font-awesome.4.7.0.min.css')}
       <!-- Aniamte CSS styles -->
     {!css::import($themeRoot . 'common/css/animate.css')}
       <!-- Nivo Slider CSS Styles -->
@@ -67,4 +67,3 @@
   {$control->block->printRegion($layouts, 'all', 'header')}
 </head>
 <body>
-
