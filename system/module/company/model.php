@@ -39,9 +39,9 @@ class companyModel extends model
                 {
                     $contact->weibo = html::a("http://weibo.com/{$value}", $value, "target='_blank'");
                 }
-                else if($item == 'sitemap')
+                else if($item == 'internetexplorer')
                 {
-                    if($_SERVER['HTTP_HOST'] != $value) $contact->sitemap = html::a("http://{$value}", $value, "target='_blank'");
+                    if($_SERVER['HTTP_HOST'] != $value) $contact->internetexplorer = html::a("http://{$value}", $value, "target='_blank'");
                     if($_SERVER['HTTP_HOST'] == $value) unset($contact->$item);
                 }
                 else if($item == 'comments')

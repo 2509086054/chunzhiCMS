@@ -63,7 +63,7 @@
           <td>
             <div class="input-group">
               <span class="input-group-addon">http://</span>
-              <?php echo html::input('sitemap', isset($contact->sitemap) ? $contact->sitemap : '', "class='form-control'");?>
+              <?php echo html::input('internetexplorer', isset($contact->internetexplorer) ? $contact->internetexplorer : '', "class='form-control'");?>
             </div>
           </td><td></td>
         </tr>

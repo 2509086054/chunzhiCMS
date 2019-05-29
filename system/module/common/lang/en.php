@@ -170,7 +170,7 @@ $lang->company->skype     = 'Skype';
 $lang->company->weibo     = 'Weibo';
 $lang->company->weixin    = 'Wechat';
 $lang->company->comments  = 'wangwang'; //wangwang
-$lang->company->sitemap      = 'Website'; //site
+$lang->company->internetexplorer      = 'Website'; //site
 
 /* Sitemap settings. */
 $lang->sitemap = new stdclass();
