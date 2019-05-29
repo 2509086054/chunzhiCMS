@@ -1,0 +1,252 @@
+模板 template
+皮肤 theme
+布局 layout
+区域 region
+区块 block
+-----------------------------------------------------------------------------------
+eps_layout 表
+	定义 template-> theme -> 页面 -> region 包含的blocks数组，每个block用blockID标识，与eps_block表对应
+	【blocks】数组的基本内容如下示：
+		[
+			{
+				"grid":4,"
+				borderless":0,"
+				titleless":0,"
+				id":"5","
+				isRandom":0
+			},
+			{
+				"grid":4,"
+				borderless":0,"
+				titleless":0,"
+				id":"13","
+				isRandom":0
+			}
+		]
+	通过 $control->block->printRegion() 找到具体的block,生成页面
+---------------------------------------------------------------------------------
+eps_block 表
+	定义区块的type和content
+	【type】
+		对应文件名或htmlcode,phpcode等
+		在 printRegion() 中，
+	【content】的基本内容如下示：
+	产品：
+		{
+			"icon":"icon-th",
+			"category":"0,7,16",
+			"limit":"3",
+			"recPerRow":"",
+			"categoryName":"abbr",
+			"infoAmount":"",
+			"alignTitle":"middle",
+			"showPrice":"1",
+			"image":"1",
+			"moreText":"",
+			"moreUrl":"",
+			"custom":{
+				"default":{
+					"iconColor":"",
+					"borderColor":"",
+					"titleColor":"",
+					"titleBackground":"",
+					"textColor":"",
+					"linkColor":"",
+					"backgroundColor":"",
+					"css":"#blockID\n{\n  \/*.panel-heading {}*\/\n  \/*.panel-body    {}*\/\n}",
+					"js":""
+					}
+			},
+			"class":"",
+			"customImage":null,
+			"topLeftContent":"",
+			"topRightContent":""
+		}
+	网站头部：
+		{
+			"top":{
+				"left":"",
+				"right":"login"
+			},
+			"topLeftContent":"",
+			"topRightContent":"",
+			"middle":{
+				"left":"logo",
+				"center":"slogan",
+				"right":"search"
+			},
+			"bottom":"nav",
+			"customImage":null,
+			"custom":{
+					"default":{
+					"css":"#blockID\n{\n  \/*.panel-heading {}*\/\n  \/*.panel-body    {}*\/\n}",
+					"js":""
+				}
+			}
+		}
+-----------------------------------------------------------------------------------
+/**
+ * 渲染模板
+ */
+-----------------------------------------------------------------------------------
+$control->block->printRegion() 说明：system/module/block/model.php : 720	
+template-> theme -> 页面 -> region
+	页面：index_index
+	region：middle
+	1. 获取block信息，由eps_block和eps_layout共同生成
+		$block=Array
+		(
+			[0] => stdClass Object
+				(
+					// eps_block 表
+					[id] => 237
+					[title] => 总的产品介绍（Dale）
+					[type] => htmlcode
+					[content] => 
+					{
+						"customImage":null,"topLeftContent":"","topRightContent":"",
+						"custom":{
+						"default":{
+						"css":"#blockID\n{\n  \/*.panel-heading {}*\/\n  \/*.panel-body    {}*\/\n}",
+						"js":""
+						}
+						},
+						"content":"<section class=\"content-section anim fadeInDown\" data-wow-delay=\"0.25s\">\n  <div class=\"container\">\n    <h1><i class=\"fa fa-pencil\"><\/i>\u7626\u8eab\u51cf\u80a5\u5065\u5eb7 <span>\u4ea7\u54c1<\/span><\/h1>\n    <p>We offer many various services at Dale! We will list a few right here, right now just to show you how incredibly awesome we are at our company!<\/p>\n  <\/div>\n<\/section><!-- .\u4ea7\u54c1\u4ecb\u7ecd end -->"
+					}
+					// eps_layout 表
+					[template] => default
+					[grid] => 4
+					[isRandom] => 0
+					[titleless] => 0
+					[borderless] => 0
+				)
+		)
+	2.调用缓存或parseBlockContent
+	3.parseBlockContent() 
+		$blockClass 定义模板主体 section css的 blockID 和 block-system-about 
+		调用 $this->getViewFile($block); 根据 [type] => htmlcode 得到模板名
+		调用 if(file_exists($blockFile)) echo $this->draw($blockFile, $block);
+	4.draw()
+		调用 TPL模板，并assign [content]=>{...}
+	
+	5.模板中，调用[content]=>{...}的内容构造页面
+-----------------------------------------------------------------------------------
+/**
+ * 后台页面design
+ */
+-----------------------------------------------------------------------------------
+system\template\default\_lang\block\zh-cn.php
+	$lang->block->default->regions 定义布局的名称
+	$lang->block->default->【layout】 定义页面的布局
+		row
+system\module\ui\
+	根据【layout】，生成后台design页面
+	【layout】'type' => 'row'时，自动添加"分栏设置"，由CSS来控制分栏的大小和位置
+保存时，存入eps_layout 表【blocks】字段中
+-----------------------------------------------------------------------------------
+/**
+ * 后台block定义
+ */
+-----------------------------------------------------------------------------------
+system\module\block\view
+	block设计时使用的模板
+system\module\block\config.php 
+	定义了区块的 categoryList（新建时显示的分类）和 pageGroupList（页面的分类）
+system\module\block\lang\zh-cn.php
+	定义view中的文字，对应eps_block 表【content】的内容
+保存时，存入eps_block 表【content】字段中	
+-----------------------------------------------------------------------------------
+/**
+ * cache 缓存
+ */
+-----------------------------------------------------------------------------------
+系统开关
+	$this->config->cache->type 开启缓存开关
+	$this->config->cache->cachePage 缓存整页开关
+system\config\cache.php
+	$config->cache->【cachedPages】 数组，定义可以缓存的页面
+	$config->cache->【relation】 定义缓存页面与block之间的对应关系
+system\framework\control.class.php
+	display() G472 判断 cachePage 开关，加载【cachedPages】定义过的缓存文件，未定义的页面没有缓存
+system\framework\router.class.php
+	clearCache() G168 按照【relation】定义的对应关系，删除指定的页面和包含的block
+system\lib\cache\file.class.php
+	get($key)
+	set($key)
+	$key 是在 $control->block->printRegion() 中生成的block文件名，
+	如：htmlcode_237，eps_block表中的type_id组合
+-----------------------------------------------------------------------------------
+/**
+ * 新建自定义block文件
+ */
+-----------------------------------------------------------------------------------
+1、先定义一个htmlcode block
+2、eps_block 中将type 改为自定义的类型，如 company
+3、在 system\template\default\block 目录下新建 company.html.php 文件
+4、system\module\block\config.php 
+	【categoryList】定义分组，在新建区块和页面布局中显示新block
+5、system\template\default\_lang\block\zh-cn.php 
+	添加【typeList】和【typeGroups】，在设计block时显示类型
+-----------------------------------------------------------------------------------
+/**
+ * 页面自定义复杂 layout
+ */
+-----------------------------------------------------------------------------------
+system\template\default\_lang\block\zh-cn.php
+	layout数据格式：array(type,name,children,title*,colWidth*)
+	所有对象都遵守这个【数据格式】
+	1、对象的定义从内向外，先定义最内层的region
+		$top = array(type,name);
+		$main = array(type,name);
+		$bottom = array(type,name);
+		$slide = array(type,name);
+	2、分成2组,用children属性：
+		$childrenRegion1 = array(type,name,children=>array());
+			$childrenRegion1[children][] = $top;
+			$childrenRegion1[children][] = $main;
+			$childrenRegion1[children][] = $bottom;
+		$childrenRegion2 = array(type,name,children=>array());
+			$childrenRegion2[children][] = $slide;
+	3、把2个数组包装到1个数组中：
+		$children = array();
+			$children[] = $childrenRegion1;
+			$children[] = $childrenRegion2;
+	4、定义最外层的 region，类型一定是【row】
+		$region = array('type' => 'row', 'name' => 'main', 'children' => $children);
+	5、赋值给页面
+		$lang->block->default->layout->PageName = array(); 
+		$lang->block->default->layout->PageName[] = $region;
+	6、添加说明文字 $lang->block->default->regions->
+eps_layout 表中，存储的是最内层的对象 name
+
+helper::a
+	system\lib\base\front\front.class.php 
+面包屑导航
+	前端：{$common->printPositionBar($control->app->getModuleName())}
+	后端：system\module\common\model.php printPositionBar()
+$this->clientDevice 赋值
+	system\framework\base\router.class.php __construct()
+	system\lib\mobile\mobile.class.php
+运行信息
+	system\framework\helper.class.php getExecInfo()
+	system\module\common\lang\zh-cn.php execInfoBar HTML格式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
