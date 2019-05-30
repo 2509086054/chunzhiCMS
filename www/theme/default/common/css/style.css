@@ -2411,14 +2411,15 @@ footer.classic div.contact-info > ul li {
 footer.classic .copyright {
 	text-align:center;
 	width:100%;
+	/*display:inline-block;*/
 	display:block;
 	font-size:12px;
 	font-weight:100;
 	color:#fff;
 	font-family:"Roboto", Arial, sans-serif;
-	padding:10px 0 2px 0;
+	padding:0 0 2px 0;
 }
-footer.classic .miitbeian {
+footer.classic .icpbeian {
 	text-align:center;
 	width:100%;
 	display:block;
