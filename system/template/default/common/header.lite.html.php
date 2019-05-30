@@ -32,7 +32,7 @@
 
   {if($config->debug)}<!-- config.debug -->
     <!-- Bootstrap core CSS -->
-    {!css::import($themeRoot . 'common/css/bootstrap.3.1.css')}
+    {!css::import('https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css')}
       <!-- Primary CSS styles -->
     {!css::import($themeRoot . 'common/css/style.css')}
       <!-- Masterslider CSS styles -->

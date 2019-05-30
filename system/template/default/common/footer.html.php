@@ -5,12 +5,11 @@
 {* All JavaScript Loading begin *}
 {if($config->debug)}
 <!-- All JavaScript -->
-{!js::import($themeRoot . 'common/js/jquery-1.11.0.min.js')}
+{!js::import('https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js')}
 <!-- Easing core JavaScript -->
 {!js::import($themeRoot . 'common/js/jquery.easing.1.3.js')}
 <!-- Bootstrap core JavaScript -->
-{!js::import($themeRoot . 'common/js/popper.min.js')}
-{!js::import($themeRoot . 'common/js/bootstrap.min.3.1.js')}
+{!js::import('https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js')}
 <!-- Master slider core JavaScript -->
 {!js::import($themeRoot . 'common/js/masterslider.min.js')}
 <!-- Master slider staff core JavaScript -->
@@ -32,7 +31,7 @@
 <!-- Contact core JavaScript -->
 {!js::import($themeRoot . 'common/js/jquery.contact.min.js')}
 <!-- NiceScroll core Javascript -->
-{!js::import($themeRoot . 'common/js/jquery.nicescroll.min.js')}
+{!js::import($themeRoot . 'common/js/jquery.nicescroll.fix.799.js')}
 <!-- Retina core JavaScript -->
 {*!js::import($themeRoot . 'common/js/retina-1.1.0.min.js')*}
 <!-- Nivo Slider JavaScript -->
