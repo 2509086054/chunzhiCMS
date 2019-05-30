@@ -343,6 +343,11 @@ EOT;
      */
     static public function image($image, $attrib = '')
     {
+        return "<img src='$image' $attrib />\n";
+    }
+
+    static public function lazyloadImage($image, $attrib = '')
+    {
         /**
          * @Description:
          * 懒加载图片
@@ -353,7 +358,6 @@ EOT;
          * @LastEditTime: Do not edit
          * @Date: 2019-05-30 16:47:15
          */
-        //return "<img src='$image' $attrib />\n";
         return "<img  class=' lazyload ' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='$image' $attrib />\n";
     }
 
