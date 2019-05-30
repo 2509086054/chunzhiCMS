@@ -75,6 +75,7 @@ $lang->currentPos       = 'Current Page';
 $lang->categoryMenu     = 'Menu';
 $lang->wechatTip        = 'Wechat Subscription';
 $lang->qrcodeTip        = 'QR Code';
+$lang->qrcodeUrl        = 'QR Code access to this site';
 $lang->language         = 'Language';
 $lang->custom           = 'Custom';
 $lang->productMenu      = 'Product';
