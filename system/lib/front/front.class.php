@@ -358,7 +358,9 @@ EOT;
      */
     static public function lazyloadImage($image, $attrib = '')
     {
-        return "<img  class=' lazyload ' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='$image' $attrib />\n";
+        //lazy2.x 自带 data:image/gif;base64
+        //return "<img  class=' lazyload ' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='$image' $attrib />\n";
+        return "<img  class=' lazyload ' data-src='$image' $attrib />\n";
     }
 
     /**
