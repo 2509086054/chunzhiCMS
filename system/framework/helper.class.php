@@ -158,10 +158,16 @@ class helper extends baseHelper
         $html = "<span class='pull-right' style='cursor:pointer;color: #fff;' id='execIcon' data-toggle='tooltip'><i class='fa fa-dashboard'> </i></span>";
         if ($app->clientDevice == 'desktop') {
             $html .= sprintf($lang->execInfo, count(dao::$querys), $memoryUsage . 'MB', $execTime);
-            $html .= '<script>';
-            $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'left',delay:
-                { show: 500, hide: 100 }}); }); ";
-            $html .= '</script>';
+            /**
+             * @Description:
+             * 缓存页面时，提示没有定义$
+             * 改为在 custom.js中加载 tooltip 即可
+             * @Author: Alisa
+             * @Date: 2019-05-30 23:00:32
+             */
+            //$html .= '<script>';
+            //$html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'left',delay:{ show: 500, hide: 100 }}); }); ";
+            //$html .= '</script>';
         }
 
         if ($app->clientDevice == 'mobile') {

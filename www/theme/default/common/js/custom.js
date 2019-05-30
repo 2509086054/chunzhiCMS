@@ -871,6 +871,11 @@ jQuery(document).ready(function($) {
 	//但当HTML容器混乱的时候可能出现可见区域内图片并没加载出来的情况
 　　//failure_limit:2 
   }); 
+  
+  $('#execIcon').tooltip({
+	  title:$('#execInfoBar').html(), 
+	  html:true, placement:'left',
+	  delay:{ show: 500, hide: 100 }});
 
 }); // End of script
 
