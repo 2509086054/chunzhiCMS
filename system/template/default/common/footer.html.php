@@ -10,6 +10,8 @@
 {!js::import($themeRoot . 'common/js/jquery.easing.1.3.js')}
 <!-- Bootstrap core JavaScript -->
 {!js::import('https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js')}
+<!-- lazyload core JavaScript -->
+{!js::import('https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js')}
 <!-- Master slider core JavaScript -->
 {!js::import($themeRoot . 'common/js/masterslider.min.js')}
 <!-- Master slider staff core JavaScript -->
@@ -45,7 +47,7 @@
 <!-- Everything else -->
 {!js::import($themeRoot . 'common/js/custom.js')}
 <!-- chanzhi JavaScript-->
-{!js::import($jsRoot . 'chanzhi.js')}
+{*!js::import($jsRoot . 'chanzhi.js')*}
 {else}
 {if($cdnRoot)}
 {!js::import($cdnRoot . '/js/chanzhi.all.js', $version = false)}

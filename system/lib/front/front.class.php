@@ -343,7 +343,18 @@ EOT;
      */
     static public function image($image, $attrib = '')
     {
-        return "<img src='$image' $attrib />\n";
+        /**
+         * @Description:
+         * 懒加载图片
+         * 仓库：https://github.com/tuupola/lazyload/tree/2.x
+         * 官网：https://appelsiini.net/projects/lazyload
+         * @Author: Alisa
+         * @LastEditors: Alisa
+         * @LastEditTime: Do not edit
+         * @Date: 2019-05-30 16:47:15
+         */
+        //return "<img src='$image' $attrib />\n";
+        return "<img  class=' lazyload ' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='$image' $attrib />\n";
     }
 
     /**
