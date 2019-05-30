@@ -11,7 +11,7 @@
       <th class='text-center'>{!echo $lang->file->addedDate}</th>
       <th class='text-center'>{!echo $lang->file->downloads}</th>
       <th class='text-center'>{!echo $lang->actions}</th>
-    </tr>          
+    </tr>
   </thead>
   <tbody>
     {foreach($files as $file)}
@@ -19,7 +19,7 @@
       <td>{!echo $file->id}</td>
       <td>
         {if($file->isImage)
-            {!html::a(inlink('download', "id=$file->id"), html::image($control->loadModel('file')->printFileURL($file, 'smallURL'), "class='image-small' title='{$file->title}'"), "target='_blank'")}
+            {!html::a(inlink('download', "id=$file->id"), html::lazyloadImage($control->loadModel('file')->printFileURL($file, 'smallURL'), "class='image-small' title='{$file->title}'"), "target='_blank'")}
             {if($file->primary == 1)} {!echo '<small class="label label-success">'. $lang->file->primary .'</small>'} {/if}
         {else}
             {!html::a(inlink('download', "id=$file->id"), "{$file->title}.{$file->extension}", "target='_blank'")}
@@ -36,7 +36,7 @@
       {if($file->isImage)} {!html::a(inlink('setPrimary', "id=$file->id"), $lang->file->setPrimary, "class='option'")} {/if}
       </td>
     </tr>
-    {/foreach}          
+    {/foreach}
   </tbody>
 
 </table>

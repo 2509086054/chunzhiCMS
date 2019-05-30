@@ -29,7 +29,7 @@
           <div class='col-sm-5' id='productImageWrapper'>
             <div class='product-image media-wrapper' id='productImage'>
               {$title = $product->image->primary->title ? $product->image->primary->title : $product->name}
-              {!html::image($control->loadModel('file')->printFileURL($product->image->primary), "title='$title' alt='$product->name'")}
+              {!html::lazyloadImage($control->loadModel('file')->printFileURL($product->image->primary), "title='$title' alt='$product->name'")}
               <div class='image-zoom-region'></div>
             </div>
             {if(count($product->image->list) > 1)}
@@ -41,7 +41,7 @@
                   {$title = $image->title ? $image->title : $product->name}
                   <div class="product-image-wrapper">
                     <div class='product-image little-image'>
-                      {!html::image($control->file->printFileURL($image), "title='{{$title}}' alt='{{$product->name}}'")}
+                      {!html::lazyloadImage($control->file->printFileURL($image), "title='{{$title}}' alt='{{$product->name}}'")}
                     </div>
                   </div>
                   {/foreach}

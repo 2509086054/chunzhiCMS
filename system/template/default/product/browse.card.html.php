@@ -7,7 +7,7 @@
         {!html::a(inlink('view', "id=$product->id", "category={{$product->category->alias}}&name=$product->alias"), '<div class="media-placeholder" data-id="' . $product->id . '">' . $product->name . '</div>', "class='media-wrapper'");}
       {else}
         {$title = $product->image->primary->title ? $product->image->primary->title : $product->name}
-        {!html::a(inlink('view', "id=$product->id", "category={{$product->category->alias}}&name=$product->alias"), html::image($control->loadModel('file')->printFileURL($product->image->primary, 'middleURL'), "title='{{$title}}' alt='{{$product->name}}'"), "class='media-wrapper'")}
+        {!html::a(inlink('view', "id=$product->id", "category={{$product->category->alias}}&name=$product->alias"), html::lazyloadImage($control->loadModel('file')->printFileURL($product->image->primary, 'middleURL'), "title='{{$title}}' alt='{{$product->name}}'"), "class='media-wrapper'")}
       {/if}
       <div class='card-heading'>
         {$showPrice    = isset($control->config->product->showPrice) ? $control->config->product->showPrice : true}

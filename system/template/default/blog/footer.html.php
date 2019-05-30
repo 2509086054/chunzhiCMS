@@ -18,7 +18,7 @@
           {$config->site->icpSN}
         {/if}
         {if(!empty($config->site->policeLink) and !empty($config->site->policeSN))}
-          {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::image($webRoot . 'theme/default/default/images/main/police.png'), "target='_blank'")}
+          {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::lazyloadImage($webRoot . 'theme/default/default/images/main/police.png'), "target='_blank'")}
         {/if}
       </span>
       <div id='powerby'>

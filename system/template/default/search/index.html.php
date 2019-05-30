@@ -24,7 +24,7 @@
               {if(!empty($object->image->primary))}
                 <div class='media pull-right'>
                   {$title = $object->image->primary->title ? $object->image->primary->title : strip_tags($object->title)}
-                  {!html::a($object->url, html::image($control->loadModel('file')->printFileURL($object->image->primary, 'smallURL'), "title='$title' class='thumbnail'" ))}
+                  {!html::a($object->url, html::lazyloadImage($control->loadModel('file')->printFileURL($object->image->primary, 'smallURL'), "title='$title' class='thumbnail'" ))}
                 </div>
               {/if}
               <div class='text text-muted'>{$object->summary}</div>
@@ -34,7 +34,7 @@
       </section>
       <footer class='clearfix'>
         {!str_replace($words, urlencode($words), $pager->get('right', 'short'))}
-        <span class='execute-info text-muted'>{!printf($lang->search->executeInfo, $pager->recTotal, $consumed)}</span> 
+        <span class='execute-info text-muted'>{!printf($lang->search->executeInfo, $pager->recTotal, $consumed)}</span>
       </footer>
     </div>
   </div>

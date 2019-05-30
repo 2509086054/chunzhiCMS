@@ -27,7 +27,7 @@
             {$product->image->primary->objectType = 'product'}
             <div class='media' style='background-image: url({$model->loadModel('file')->printFileURL($product->image->primary, 'middleURL')});'>
               {$title = $product->image->primary->title ? $product->image->primary->title : $product->name}
-              {!html::image($model->loadModel('file')->printFileURL($product->image->primary, 'middleURL'), "title='{{$title}}' alt='{{$product->name}}'")}
+              {!html::lazyloadImage($model->loadModel('file')->printFileURL($product->image->primary, 'middleURL'), "title='{{$title}}' alt='{{$product->name}}'")}
             </div>
 
             <div class="card-heading {if(isset($content->alignTitle) && $content->alignTitle == 'middle')} {!'text-center'} {/if}">

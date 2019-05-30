@@ -28,7 +28,7 @@
           <i class="fa fa-bars"></i>
         </button>
         <!-- logo -->
-        {!html::a(helper::createLink('index'), html::image($model->loadModel('file')->printFileURL($logo)), "class='navbar-brand' alt='{{$config->company->name}}' title='{{$config->company->name}}'")}
+        {!html::a(helper::createLink('index'), html::lazyloadImage($model->loadModel('file')->printFileURL($logo)), "class='navbar-brand' alt='{{$config->company->name}}' title='{{$config->company->name}}'")}
         <!-- slogan class未设置
         <div id='siteSlogan' data-ve='slogan'class="navbar-brand" ><span>{$config->site->slogan}</span></div>
        -->

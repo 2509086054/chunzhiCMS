@@ -12,7 +12,7 @@
  */
 /php*}
 {include $control->loadModel('ui')->getEffectViewFile('default', 'blog', 'header')}
-{if(isset($category))}      {$path = array_keys($category->pathNames)} {/if} 
+{if(isset($category))}      {$path = array_keys($category->pathNames)} {/if}
 {if(!empty($path))}         {!js::set('path', $path)} {/if}
 {if(!empty($category->id))} {!js::set('categoryID', $category->id)} {/if}
 {if(!empty($category->id))} {!js::set('pageLayout', $control->block->getLayoutScope('blog_index', $category->id))} {/if}
@@ -42,7 +42,7 @@
           <div class='media {!echo $pull}' style="max-width: {!echo !empty($control->config->blog->imageWidth) ? $control->config->blog->imageWidth . 'px' : '180px'}">
             {$title = $stick->image->primary->title ? $stick->image->primary->title : $stick->title}
             {$stick->image->primary->objectType = 'blog'}
-            {!html::a($url, html::image($control->loadModel('file')->printFileURL($stick->image->primary, $imageURL), "title='$title' class='thumbnail'"))}
+            {!html::a($url, html::lazyloadImage($control->loadModel('file')->printFileURL($stick->image->primary, $imageURL), "title='$title' class='thumbnail'"))}
           </div>
           {/if}
           <h4 class='card-heading'>
@@ -62,8 +62,8 @@
                   <span>[ {!echo ($config->blog->categoryName == 'full' or empty(zget($topCategoryList, $stick->category->id)->abbr)) ? zget($topCategoryList, $stick->category->id)->name : zget($topCategoryList, $stick->category->id)->abbr} ]</span>
                 {else}
                   <span>[ {!echo ($config->blog->categoryName == 'full' or empty($stick->category->abbr)) ? $stick->category->name : $stick->category->abbr} ]</span>
-                {/if} 
-              {/if}            
+                {/if}
+              {/if}
           </div>
         </div>
         {@unset($articles[$stick->id])}
@@ -78,7 +78,7 @@
             <div class='media {!echo $pull}' style="max-width: {!echo !empty($control->config->blog->imageWidth) ? $control->config->blog->imageWidth . 'px' : '180px'}">
               {$title = $article->image->primary->title ? $article->image->primary->title : $article->title}
               {$article->image->primary->objectType = 'blog'}
-              {!html::a($url, html::image($control->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='{{$title}}' class='thumbnail'"))}
+              {!html::a($url, html::lazyloadImage($control->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='{{$title}}' class='thumbnail'"))}
             </div>
           {/if}
           <h4 class='card-heading'>{!html::a($url, $article->title, "style='color:{{$article->titleColor}}'")}</h4>
@@ -99,8 +99,8 @@
                     {!echo "<span>["}
                     {!echo ($config->blog->categoryName == 'full' or empty($article->category->abbr)) ? $article->category->name : $article->category->abbr}
                     {!echo "]</span>"}
-                {/if} 
-              {/if}            
+                {/if}
+              {/if}
           </div>
         </div>
       {/foreach}

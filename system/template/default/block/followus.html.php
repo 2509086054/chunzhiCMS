@@ -27,7 +27,7 @@
     <tr class='text-center'>
       <td class='wechat-block'>
         <div class='name'><i class='icon-weixin'>&nbsp;</i>{!echo $public->name}</div>
-        <div class='qrcode'>{!html::image($public->qrcode, "class='w-220px'")}</div>
+        <div class='qrcode'>{!html::lazyloadImage($public->qrcode, "class='w-220px'")}</div>
       </td>
     </tr>
     {/foreach}

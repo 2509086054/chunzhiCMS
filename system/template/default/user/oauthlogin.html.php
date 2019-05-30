@@ -1,6 +1,6 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
 {foreach($control->lang->user->oauth->providers as $providerCode => $providerName)}
-  {if(isset($config->oauth->$providerCode))} 
+  {if(isset($config->oauth->$providerCode))}
     {$providerConfig[$providerCode] = json_decode($config->oauth->$providerCode)}
   {/if}
 {/foreach}
@@ -14,7 +14,7 @@
       {if($referer and !strpos($referer, 'login') and !strpos($referer, 'oauth'))}
         {$params .= "&referer=" . helper::safe64Encode($referer)}
       {/if}
-      {!html::a(helper::createLink('user', 'oauthLogin', $params), html::image(getWebRoot() . "theme/default/default/images/main/{{$providerCode}}" . 'login.png', "class='$providerCode'"), "class='btn-oauth'")}
+      {!html::a(helper::createLink('user', 'oauthLogin', $params), html::lazyloadImage(getWebRoot() . "theme/default/default/images/main/{{$providerCode}}" . 'login.png', "class='$providerCode'"), "class='btn-oauth'")}
     {/foreach}
   </span>
 {/if}

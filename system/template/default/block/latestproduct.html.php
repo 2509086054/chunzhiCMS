@@ -30,7 +30,7 @@
             {$title = $product->image->primary->title ? $product->image->primary->title : $product->name}
             {*
              * 配合/block/producttree.html.php
-             * 定义filter class,一个产品可能有多个分类，所有要循环生成所有的class 
+             * 定义filter class,一个产品可能有多个分类，所有要循环生成所有的class
              *}
             {$filterClass = ""}
             {foreach($product->categories as $category)}
@@ -39,7 +39,7 @@
             <li class="{$filterClass}">
                 <a href="{$url}" id="desc" data-title="{$product->name}" data-icon="fa-eye">
                 {if(!empty($product->image))}
-                {!html::image($model->loadModel('file')->printFileURL($product->image->primary, 'middleURL'),"title='{{$title}}' alt='{{$product->name}}'")}
+                {!html::lazyloadImage($model->loadModel('file')->printFileURL($product->image->primary, 'middleURL'),"title='{{$title}}' alt='{{$product->name}}'")}
                 {else}
                 <img src="{$themeRoot . 'common/images/ffffff.png'}" />
                 {/if}

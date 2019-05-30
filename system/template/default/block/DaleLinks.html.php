@@ -5,7 +5,7 @@
  * @Author: Alisa
  * @Date: 2019-05-29 00:15:44
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-30 03:03:19
+ * @LastEditTime: 2019-05-30 15:42:14
  */
 *}
 {if($app->getModuleName() != 'links' and !empty($config->links->index))}

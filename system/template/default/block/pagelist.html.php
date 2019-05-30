@@ -33,18 +33,18 @@
       <div class='item'>
         <div class='item-heading'><strong>{!html::a($url, $page->title, "style='color:{{$page->titleColor}}'")}</strong></div>
         <div class='item-content'>
-          
+
           <div class='text small text-muted'>
             <div class='media {!echo $pull}' style="max-width: {!echo !empty($content->imageWidth) ? $content->imageWidth . 'px' : '60px'}">
             {if(!empty($page->image))}
               {$title = $page->image->primary->title ? $page->image->primary->title : $page->title}
               {$page->image->primary->objectType = 'article'}
-              {!html::a($url, html::image($model->loadModel('file')->printFileURL($page->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
+              {!html::a($url, html::lazyloadImage($model->loadModel('file')->printFileURL($page->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
             {/if}
             </div>
             <strong class='text-important text-nowrap'>
               {if(isset($content->time))} {!echo "<i class='icon-time'></i> " . formatTime($page->addedDate, DT_DATE4)} {/if}
-            </strong> 
+            </strong>
             &nbsp;{!echo $page->summary}
           </div>
         </div>

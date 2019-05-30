@@ -43,7 +43,7 @@
                 {$blockContent    = json_decode($block->content)}
                 {$blockCategories = ''}
                 {if(isset($blockContent->category))} {$blockCategories = $blockContent->category} {/if}
-         
+
                 {$categoryName = $article->category->name}
                 {foreach($article->categories as $id => $category)}
                   {if(strpos(",$blockCategories,", ",$id,") !== false)}
@@ -51,7 +51,7 @@
                     {break}
                   {/if}
                 {/foreach}
-       
+
                 {$categoryName = '[' . ($article->category->abbr ? $article->category->abbr : $categoryName) . '] '}
                 {!html::a(helper::createLink('article', 'browse', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), $categoryName)}
               {else}
@@ -61,13 +61,13 @@
             <strong>{!html::a($url, $article->title, "style='color: {{$article->titleColor}}'")}</strong>
           </div>
           <div class='item-content'>
-            
+
             <div class='text small text-muted'>
               <div class='media {$pull}' style="max-width: {!echo !empty($content->imageWidth) ? $content->imageWidth . 'px' : '100px'}">
               {if(!empty($article->image))}
                 {$title = $article->image->primary->title ? $article->image->primary->title : $article->title}
                 {$article->image->primary->objectType = 'article'}
-                {!html::a($url, html::image($model->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
+                {!html::a($url, html::lazyloadImage($model->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
               {/if}
               </div>
               <strong class='text-important text-nowrap'>

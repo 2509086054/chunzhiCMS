@@ -17,7 +17,7 @@
               {if(!empty($page->image))}
                 <div class='media pull-right'>
                   {$title = $page->image->primary->title ? $page->image->primary->title : $page->title}
-                  {!html::a($url, html::image($control->loadModel('file')->printFileURL($page->image->primary, 'smallURL'), "title='$title' class='thumbnail'" ))}
+                  {!html::a($url, html::lazyloadImage($control->loadModel('file')->printFileURL($page->image->primary, 'smallURL'), "title='$title' class='thumbnail'" ))}
                 </div>
               {/if}
               <div class='text text-muted'>{!helper::substr($page->summary, 120, '...')}</div>

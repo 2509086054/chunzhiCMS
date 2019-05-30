@@ -5,7 +5,7 @@
  * @Author: Alisa
  * @Date: 2019-05-28 12:20:46
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-30 04:00:24
+ * @LastEditTime: 2019-05-30 15:48:31
  */
 *}
 <footer class="classic">
@@ -14,9 +14,10 @@
       <div class="container">
         <div class="row">
           {!$control->block->printRegion($layouts, 'all', 'all_bottom_regionRow1')}
-          <div class="col-lg-5 anim fadeInRight">
+
           <!-- qrcode 二维码 -->
-          </div><!-- .col-lg-5 -->
+          {include TPL_ROOT . 'common/qrcode.html.php'}
+
         </div><!-- .row -->
 
         <div class="row">
@@ -44,7 +45,7 @@
               {$config->site->icpSN}
               {/if}
               {if(!empty($config->site->policeLink) and !empty($config->site->policeSN))}
-              {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::image($webRoot . 'theme/default/default/images/main/police.png'),"target='_blank'")}
+              {!html::a(strpos($config->site->policeLink, 'http://') !== false ? $config->site->policeLink : 'http://' . $config->site->policeLink, html::lazyloadImage($webRoot . 'theme/default/default/images/main/police.png'),"target='_blank'")}
               {/if}
             </span>
           </div><!-- .col-xs-6 -->

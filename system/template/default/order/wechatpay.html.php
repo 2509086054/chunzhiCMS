@@ -3,7 +3,7 @@
 {!js::set('orderID', $order->id)}
 {!js::set('tradeID', $tradeID)}
 {!js::set('payStatus', $order->payStatus)}
-<div class='panel'>            
+<div class='panel'>
   <div class='panel-heading'>
     <strong>{$lang->order->scanCode}</strong>
     <div class='panel-actions'>{!echo $currencySymbol . ' ' . $order->amount}</div>
@@ -14,7 +14,7 @@
         <div class='title'>{$lang->order->wechatpay}</div>
         <div class='qrcode'>
           {$url = base64_encode($url)}
-          <div class='qrcode-img'>{!html::image($control->createLink('order', 'qrcode', "url=$url"))}</div>
+          <div class='qrcode-img'>{!html::lazyloadImage($control->createLink('order', 'qrcode', "url=$url"))}</div>
           <div class='qrcode-warning'></div>
         </div>
         <div class="tip">

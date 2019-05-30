@@ -23,7 +23,7 @@
     <div class='panel-body'>
       <div class='card'>
         <div class='media' style='background-image: url({$image});'>
-          {!html::image($image, "title='{{$product->name}}]' alt='{{$product->name}}'")}
+          {!html::lazyloadImage($image, "title='{{$product->name}}]' alt='{{$product->name}}'")}
         </div>
         <div class='card-heading'>
           {if(isset($content->showCategory) and $content->showCategory == 1)}

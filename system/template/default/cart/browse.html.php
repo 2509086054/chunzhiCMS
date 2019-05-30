@@ -6,7 +6,7 @@
  * @copyright   Copyright 2009-2015 青岛易软天创网络科技有限公司(QingDao Nature Easy Soft Network Technology Co,LTD, www.cnezsoft.com)
  * @license     ZPLV12 (http://zpl.pub/page/zplv12.html)
  * @author      Xiying Guan <guanxiying@xirangit.com>
- * @package     cart 
+ * @package     cart
  * @version     $Id$
  * @link        http://www.chanzhi.org
  */
@@ -37,13 +37,13 @@
           <td class='w-100px'>
             {if(!empty($product->image))}
                 {$title = $product->image->primary->title ? $product->image->primary->title : $product->name}
-                {!html::a($productLink, html::image($control->loadModel('file')->printFileURL($product->image->primary, 'smallURL'), "title='$title' alt='$product->name'"), "class='media-wrapper'")}
+                {!html::a($productLink, html::lazyloadImage($control->loadModel('file')->printFileURL($product->image->primary, 'smallURL'), "title='$title' alt='$product->name'"), "class='media-wrapper'")}
             {/if}
           </td>
           <td class='text-left text-middle'>
             {!html::a($productLink, '<div class="" data-id="' . $product->id . '">' . $product->name . '</div>', "class='media-wrapper'")}
           </td>
-          <td class='w-100px text-middle'> 
+          <td class='w-100px text-middle'>
             {if($product->promotion != 0)}
               {$price = $product->promotion}
               <div class='text-muted'><del>{!echo $currencySymbol . $product->price}</del></div>

@@ -30,10 +30,10 @@
     {$imageURL = !empty($content->imageSize) ? $content->imageSize . 'URL' : 'smallURL'}
     <div class='panel-body'>
       <div class='items'>
-   
+
       {foreach($articles as $article)}
       {$url = helper::createLink('blog', 'view', "id=$article->id", "category={{$article->category->alias}}&name=$article->alias")}
-   
+
         <div class='item'>
           <div class='item-heading'>
             {$blod = ''}
@@ -58,12 +58,12 @@
               {if(!empty($article->image))}
                 {$title = $article->image->primary->title ? $article->image->primary->title : $article->title}
                 {$article->image->primary->objectType = 'article'}
-                {!html::a($url, html::image($model->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
+                {!html::a($url, html::lazyloadImage($model->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
               {/if}
               </div>
               <strong class='text-important text-nowrap'>
                 {if(isset($content->time))} {!echo "<i class='icon-time'></i> " . formatTime($article->addedDate, DT_DATE4)} {/if}
-              </strong> 
+              </strong>
               &nbsp;{$article->summary}
             </div>
           </div>
