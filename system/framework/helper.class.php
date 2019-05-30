@@ -159,7 +159,8 @@ class helper extends baseHelper
         if ($app->clientDevice == 'desktop') {
             $html .= sprintf($lang->execInfo, count(dao::$querys), $memoryUsage . 'MB', $execTime);
             $html .= '<script>';
-            $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'left'}); }); ";
+            $html .= "$().ready(function() { $('#execIcon').tooltip({title:$('#execInfoBar').html(), html:true, placement:'left',delay:
+                { show: 500, hide: 100 }}); }); ";
             $html .= '</script>';
         }
 
