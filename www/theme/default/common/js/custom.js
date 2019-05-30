@@ -834,14 +834,29 @@ jQuery(document).ready(function($) {
     });
   });
 
-  // jQuery.support.transition
-// to verify that CSS3 transition is supported (or any of its browser-specific implementations)
-$.support.transition = (function(){
+    // jQuery.support.transition
+    // to verify that CSS3 transition is supported (or any of its browser-specific implementations)
+    $.support.transition = (function(){
     var thisBody = document.body || document.documentElement,
     thisStyle = thisBody.style,
     support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
-
-    return support;
+    /**
+     * @Description:
+     * 直接 return support 造成 $.support.transition = bool
+     * 而 $.support.transition.end = null
+     * 接 git ID 0f49d1760693e3da376dad43280071df812d9e59
+     * bootstrap3.X 的 $.support.transition.end为null，
+     * tooltip 过渡动画时，提示
+     * Uncaught TypeError: Cannot convert undefined or null to object
+     * 修复为 CSS3 transition is supported 的情况下，不改变 $.support.transition 的值
+     * @Author: Alisa
+     * @LastEditors: Alisa
+     * @LastEditTime: Do not edit
+     * @Date: 2019-05-30 13:32:31
+     */
+    //return support;
+    if (support) return $.support.transition;
+    else return support;
   })();
 }); // End of script
 
