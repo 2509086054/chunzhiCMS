@@ -53,6 +53,7 @@ $lang->site->clearCache       = '清除缓存';
 $lang->site->clearingCache    = '清除中';
 $lang->site->clearedCache     = '清除完毕';
 $lang->site->failClear        = '清除失败';
+$lang->site->failClearQrcode  = '清除网站二维码失败';
 $lang->site->clearCacheTip    = '<td>删除权限不足，请修改<code>%s</code>权限<td>';
 $lang->site->hour             = '小时';
 $lang->site->homeMenus        = '首页菜单';

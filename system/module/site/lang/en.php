@@ -53,6 +53,7 @@ $lang->site->clearCache      = 'Clear Cache';
 $lang->site->clearingCache   = 'Clearing';
 $lang->site->clearedCache    = 'Finished';
 $lang->site->failClear       = 'Failed';
+$lang->site->failClearQrcode  = 'Clear website QR code failed';
 $lang->site->clearCacheTip   = '<td>You do NOT have the privilege to clear cache. Please update your privilege of <code>%s</code>.<td>';
 $lang->site->hour            = 'Hour';
 $lang->site->homeMenus       = 'Homepage Menu';

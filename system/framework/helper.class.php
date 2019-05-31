@@ -17,6 +17,44 @@ include FRAME_ROOT . '/base/helper.class.php';
 class helper extends baseHelper
 {
     /**
+     * @Description:
+     * @param : {type}
+     * @return:
+     * @Author: Alisa
+     * @LastEditors: Alisa
+     * @LastEditTime: Do not edit
+     * @Date: 2019-05-31 10:19:42
+     */
+    public static function getSiteQrcode()
+    {
+        global $app,$config;
+        /**
+         * @Description:
+         * 二维码目录/文件名定义在 system\module\site\config.php
+         * 磁盘存储位置：
+         * $_SERVER['DOCUMENT_ROOT'] = D:/xampp/htdocs/chunzhiCMS/www
+         * $config->site->qrcodeFrontDir = /data/wechat/site/
+         * @Author: Alisa
+         * @LastEditors: Alisa
+         * @LastEditTime: Do not edit
+         * @Date: 2019-05-31 13:04:07
+         */
+        $qrDir = $_SERVER['DOCUMENT_ROOT'] . $config->site->qrcodeFrontDir;
+        $qrfile = $config->site->qrcodeFileName;
+        //后台设置的域名
+        $domain = empty($app->control->config->site->domain) ? "localhost" : $app->control->config->site->domain ;
+        //未生成网站二维码，则调用 php.imagepng 生成并保存
+        if (!file_exists($qrDir.$qrfile)) {
+            if (!is_dir($qrDir)) {
+                mkdir($qrDir);
+            }
+            //$im = ImageCreateFromPng($qrDir.$qrfile); imagepng($im);
+            $app->loadClass('qrcode');
+            QRcode::png($domain, $qrDir.$qrfile, 4, 6, true);
+        }
+        return $config->site->qrcodeFrontDir.$qrfile;
+    }
+    /**
      * Create a link to a module's method.
      *
      * This method also mapped in control class to call conveniently.

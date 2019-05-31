@@ -35,33 +35,45 @@ class siteModel extends model
     public function clearCache()
     {
         $clearResult = array('result' => 'success', 'message' => '');
+        /**
+         * @Description:
+         * 清除缓存的同时，清除网站二维码
+         * @Author: Alisa
+         * @Date: 2019-05-31 13:21:34
+         */
+        $qrDir = $_SERVER['DOCUMENT_ROOT'] . $this->config->site->qrcodeFrontDir;
+        if (!$this->deleteDir($qrDir, false)) {
+            $clearResult = array('result' => 'fail', 'message' => $this->lang->site->failClearQrcode);
+            return $clearResult;
+        }
+        //清除缓存
         $tmpRoot = $this->app->getTmpRoot();
-        $cacheRoot = $tmpRoot . 'cache/'; 
+        $cacheRoot = $tmpRoot . 'cache/';
         if(!$this->deleteDir($cacheRoot, false)) $clearResult = array('result' => 'fail', 'message' => $this->lang->site->failClear);
         return $clearResult;
     }
 
     /**
-     * Delete dir. 
-     * 
-     * @param  string  $dir 
-     * @param  bool    $deleteSelf 
+     * Delete dir.
+     *
+     * @param  string  $dir
+     * @param  bool    $deleteSelf
      * @access public
      * @return bool
      */
-    function deleteDir($dir, $deleteSelf = true) 
+    function deleteDir($dir, $deleteSelf = true)
     {
         $dh = opendir($dir);
-        while($file = readdir($dh)) 
+        while($file = readdir($dh))
         {
-            if($file != "." && $file != "..") 
+            if($file != "." && $file != "..")
             {
                 $fullpath = $dir . "/" . $file;
-                if(!is_dir($fullpath)) 
+                if(!is_dir($fullpath))
                 {
                     unlink($fullpath);
-                } 
-                else 
+                }
+                else
                 {
                     $this->deleteDir($fullpath);
                 }
@@ -69,14 +81,14 @@ class siteModel extends model
         }
         closedir($dh);
 
-        if(!$deleteSelf) return true; 
-        if(rmdir($dir))  return true;           
+        if(!$deleteSelf) return true;
+        if(rmdir($dir))  return true;
         return false;
     }
 
     /**
      * Check gzip.
-     * 
+     *
      * @access public
      * @return bool
      */
@@ -89,7 +101,7 @@ class siteModel extends model
         curl_setopt($curl, CURLOPT_URL, $fileUrl);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($curl, CURLOPT_ENCODING, '');
-        curl_exec($curl); 
+        curl_exec($curl);
 
         if(!curl_errno($curl))
         {
@@ -143,7 +155,7 @@ class siteModel extends model
         {
             $error = sprintf($this->lang->site->fileAuthority, 'chmod o=rwx ' . $myFile);
             return array('result' => 'fail', 'error' => $error);
-        }        
+        }
         else
         {
             $content = '';
@@ -182,7 +194,7 @@ class siteModel extends model
 
             file_put_contents($myFile, $rawContent . "\n" . $content);
             dao::$changedTables[] = TABLE_CONFIG;
-            return array('result' => 'success', 'message' => $this->lang->saveSuccess); 
+            return array('result' => 'success', 'message' => $this->lang->saveSuccess);
         }
     }
 }
