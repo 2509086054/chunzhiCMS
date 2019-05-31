@@ -189,13 +189,13 @@ jQuery(document).ready(function($) {
         $("html").niceScroll({ // The document page (body)
             cursorcolor:"#6ebff3",
             cursorborder:"0",
-			zindex:999999999
+            zindex:999999999
         });
-		$(".navbar ul.mini").niceScroll({
-			cursoropacitymax:0,
-			cursoropacitymin:0,
-			cursorborder  :0
-		});
+    $(".navbar ul.mini").niceScroll({
+      cursoropacitymax:0.5,
+      cursoropacitymin:0,
+      cursorborder  :0
+    });
     }
 
   /************************
@@ -745,13 +745,26 @@ jQuery(document).ready(function($) {
       }
     }
   });
+
+  /**
+   * @Description:
+   * jquery 的 slideDown 和 slideUp 加入callback
+   * 对 niceScroll 进行 resize
+   * 保证 mobile 端菜单可以正常滚动
+   * 注意：没有监听bootstrap的事件
+   * .on("shown.bs.dropdown",function(e){}) 和 hide.bs.dropdown
+   * 原因是本例中，dropdown 被CSS重写，bootstrap 监听不到
+   * @Author: Alisa
+   * @Date: 2019-05-31 23:35:58
+   */
   $(".navbar ul.mini i.fa").on("click", document, function(e) {
     e.preventDefault();
     if ( $(this).hasClass("fa-chevron-right") ) {
-      $(this).removeClass('fa-chevron-right').addClass("fa-chevron-down").siblings("ul").slideDown(400, "easeOutExpo");
+      $(this).removeClass('fa-chevron-right').addClass("fa-chevron-down").siblings("ul").slideDown(400, "easeOutExpo",function(){$("#mini").niceScroll().resize();});
     } else {
-      $(this).addClass('fa-chevron-right').removeClass("fa-chevron-down").siblings("ul").slideUp(400, "easeOutExpo");
+      $(this).addClass('fa-chevron-right').removeClass("fa-chevron-down").siblings("ul").slideUp(400, "easeOutExpo",function(){$("#mini").niceScroll().resize();});
     }
+	$("#mini").niceScroll().resize();
   });
 
   /**************************
@@ -876,12 +889,14 @@ jQuery(document).ready(function($) {
    * 改为在 custom.js中加载 tooltip 即可
    */
   $('#execIcon').tooltip({
-	  title:$('#execInfoBar').html(),
-	  html:true, placement:'left',
-	  delay:{ show: 500, hide: 100 }});
+    title:$('#execInfoBar').html(),
+    html:true, placement:'left',
+    delay:{ show: 500, hide: 100 }});
 
 }); // End of script
 
+//空函数备用
+$(function() {});
 /**
  * Create link.
  *

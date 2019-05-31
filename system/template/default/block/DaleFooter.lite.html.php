@@ -5,7 +5,7 @@
  * @Author: Alisa
  * @Date: 2019-05-28 12:20:46
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-31 17:27:54
+ * @LastEditTime: 2019-05-31 20:10:11
  */
 *}
 <footer class="classic">
@@ -14,8 +14,7 @@
       <div class="container">
         <div class="row">
           {!$control->block->printRegion($layouts, 'all', 'all_bottom_regionRow1')}
-          <!-- qrcode 二维码 -->
-          {*include TPL_ROOT . 'common/qrcode.html.php'*}
+          {* *include TPL_ROOT . 'common/qrcode.html.php' * *}
         </div><!-- .row -->
 
         <div class="row">

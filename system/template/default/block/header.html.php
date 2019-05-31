@@ -32,7 +32,7 @@
         <!-- slogan class未设置
         <div id='siteSlogan' data-ve='slogan'class="navbar-brand" ><span>{$config->site->slogan}</span></div>
        -->
-        <ul class="mini"></ul><!-- mobile navigation -->
+        <ul class="mini" id="mini"></ul><!-- mobile navigation -->
       </div>
       <!-- .navbar-header -->
       {include $model->loadModel('ui')->getEffectViewFile('default', 'block', 'nav')}
