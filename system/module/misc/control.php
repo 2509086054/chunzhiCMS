@@ -1,4 +1,6 @@
-<?php if(!defined("RUN_MODE")) die();?>
+<?php if (!defined("RUN_MODE")) {
+    die();
+}?>
 <?php
 /**
  * The control file of misc of chanzhiEPS.
@@ -26,7 +28,7 @@ class misc extends control
     public function qrcode()
     {
         $this->app->loadClass('qrcode');
-        QRcode::png($this->server->http_referer, false, 4, 6);
+        QRcode::png($this->server->http_referer, false, 4, 6, true);
         exit;
     }
 
@@ -56,7 +58,7 @@ class misc extends control
 
     /**
      * Print topbar.
-     * 
+     *
      * @access public
      * @return void
      */
