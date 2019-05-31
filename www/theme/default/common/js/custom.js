@@ -877,6 +877,7 @@ jQuery(document).ready(function($) {
    * img 懒加载后 body size 发生变化，
    * 需要对 niceScroll 重新 resize
    * 滚动条才能滚动到正确的位置上
+   * npm/lazyload@2.0.0-rc.2 没有找到 callback
    */
   $("img.lazyload").lazyload();
   //fires this function when it appears
