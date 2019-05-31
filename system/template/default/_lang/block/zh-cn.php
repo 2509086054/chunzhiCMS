@@ -19,6 +19,7 @@ $lang->block->default->typeList['baidustat'] = '百度统计';
 $lang->block->default->typeList['tabs']      = '组合区块';
 $lang->block->default->typeList['DaleCompany']      = '【Dale模板】公司信息';
 $lang->block->default->typeList['DaleLinks']      = '【Dale模板】友情链接';
+$lang->block->default->typeList['DaleQrcode']      = '【Dale模板】二维码';
 
 $lang->block->default->typeList['latestArticle']   = '最新文章';
 $lang->block->default->typeList['hotArticle']      = '热门文章';
@@ -56,6 +57,7 @@ $lang->block->default->typeGroups['phpcode']   = 'input';
 $lang->block->default->typeGroups['baidustat'] = 'input';
 $lang->block->default->typeGroups['DaleCompany'] = 'input';
 $lang->block->default->typeGroups['DaleLinks'] = 'input';
+$lang->block->default->typeGroups['DaleQrcode'] = 'input';
 
 $lang->block->default->typeGroups['latestArticle'] = 'article';
 $lang->block->default->typeGroups['hotArticle']    = 'article';

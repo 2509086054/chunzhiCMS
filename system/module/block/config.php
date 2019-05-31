@@ -16,7 +16,7 @@ $config->block->categoryList = new stdclass();
 $config->block->categoryList->custom  = ',html,htmlcode,phpcode,baidustat,tabs,DaleCompany,DaleLinks,';
 $config->block->categoryList->article = ',latestArticle,hotArticle,latestBlog,latestThread,pageList,articleTree,blogTree,latestBook,';
 $config->block->categoryList->product = ',latestProduct,hotProduct,featuredProduct,productTree,';
-$config->block->categoryList->system  = ',contact,message,followUs,about,links,slide,header,bottomNav,subscribe,login,';
+$config->block->categoryList->system  = ',contact,message,followUs,about,links,slide,header,bottomNav,subscribe,login,DaleQrcode,';
 
 $config->block->pageGroupList = new stdclass();
 $config->block->pageGroupList->system   = array('all', 'index_index', 'company_index', 'page_view');

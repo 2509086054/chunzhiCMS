@@ -5,7 +5,7 @@
  * @Author: Alisa
  * @Date: 2019-05-28 12:20:46
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-30 15:48:31
+ * @LastEditTime: 2019-05-31 17:27:54
  */
 *}
 <footer class="classic">
@@ -14,10 +14,8 @@
       <div class="container">
         <div class="row">
           {!$control->block->printRegion($layouts, 'all', 'all_bottom_regionRow1')}
-
           <!-- qrcode 二维码 -->
-          {include TPL_ROOT . 'common/qrcode.html.php'}
-
+          {*include TPL_ROOT . 'common/qrcode.html.php'*}
         </div><!-- .row -->
 
         <div class="row">
@@ -25,10 +23,10 @@
         </div><!-- .row -->
 
         <div class="row">
-        <div class="col-xs-4  anim fadeInLeft ">
-        <!-- 站点地图 -->
-        {!html::a(helper::createLink('sitemap', 'index'), '<i class=\'fa fa-sitemap\'></i> ' . $lang->sitemap->common, "class='text-linki'")}
-        </div>
+          <div class="col-xs-4  anim fadeInLeft ">
+          <!-- 站点地图 -->
+          {!html::a(helper::createLink('sitemap', 'index'), '<i class=\'fa fa-sitemap\'></i> ' . $lang->sitemap->common, "class='text-linki'")}
+          </div>
           <div class="col-xs-6">
             <span class="copyright">
               {$contact=json_decode($config->company->contact)}
