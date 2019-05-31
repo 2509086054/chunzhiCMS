@@ -186,16 +186,16 @@ jQuery(document).ready(function($) {
   *************************/
     // Remove NiceScroll dependacny
     if ( $.isFunction($.fn.niceScroll) ) {
-         $("html").niceScroll({ // The document page (body)
+        $("html").niceScroll({ // The document page (body)
             cursorcolor:"#6ebff3",
             cursorborder:"0",
-      zindex:999999999
+			zindex:999999999
         });
-    $(".navbar ul.mini").niceScroll({
-      cursoropacitymax:0,
-      cursoropacitymin:0,
-            cursorborder  :0
-    });
+		$(".navbar ul.mini").niceScroll({
+			cursoropacitymax:0,
+			cursoropacitymin:0,
+			cursorborder  :0
+		});
     }
 
   /************************
@@ -858,27 +858,25 @@ jQuery(document).ready(function($) {
     if (support) return $.support.transition;
     else return support;
   })();
-  
+
   /**
    * 懒加载img
+   * img 懒加载后 body size 发生变化，
+   * 需要对 niceScroll 重新 resize
+   * 滚动条才能滚动到正确的位置上
    */
-  $("img.lazyload").lazyload({ 
-	//effect:"fadeIn", //渐现，show(直接显示),fadeIn(淡入),slideDown(下拉)
-	//threshold:1, //预加载，在图片距离屏幕180px时提前载入
-	//事件触发时才加载，click(点击),mouseover(鼠标划过),sporty(运动的),默认为scroll（滑动）
-	//event: 'click',  
-　　//container:$("#container"), // 指定对某容器中的图片实现效果
-	//加载2张可见区域外的图片,lazyload默认在找到第一张不在可见区域里的图片时则不再继续加载,
-	//但当HTML容器混乱的时候可能出现可见区域内图片并没加载出来的情况
-　　//failure_limit:5
-  }); 
-  
+  $("img.lazyload").lazyload();
+  //fires this function when it appears
+  $("img.lazyload").on('load',function(){
+    $("html").niceScroll().resize()
+  });
+
   /**
    * 缓存页面时，提示没有定义$
    * 改为在 custom.js中加载 tooltip 即可
-   */   
+   */
   $('#execIcon').tooltip({
-	  title:$('#execInfoBar').html(), 
+	  title:$('#execInfoBar').html(),
 	  html:true, placement:'left',
 	  delay:{ show: 500, hide: 100 }});
 
