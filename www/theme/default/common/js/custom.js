@@ -53,6 +53,15 @@ jQuery(document).ready(function($) {
     }
   }
 
+  $("#carousel,#carousel-2").owlCarousel({
+    autoPlay:true,
+    singleItem:true,
+    transitionStyle:"goDown",
+    slideSpeed : 400,
+    touchDrag:false,
+    mouseDrag:false
+  });
+
   // Remove the master slider's dependancy
   if ( typeof MasterSlider === 'function' ) {
 
@@ -828,6 +837,7 @@ jQuery(document).ready(function($) {
   });
 
   // Hover post functionality
+  /* 本例中不需要 hover by alisa
   $(".sidebar ul.posts li").each(function() {
     var tO = new Array();
     $(this).mouseenter(function() {
@@ -845,7 +855,7 @@ jQuery(document).ready(function($) {
       for (var i = 0; i < tO.length; i++) clearTimeout(tO[i]);
       $(this).find('.hover').stop().fadeOut(200, "easeOutExpo");
     });
-  });
+  });*/
 
     // jQuery.support.transition
     // to verify that CSS3 transition is supported (or any of its browser-specific implementations)

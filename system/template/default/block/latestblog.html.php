@@ -1,15 +1,10 @@
 {if(!defined("RUN_MODE"))} {!die()} {/if}
 {*php
 /**
- * The latest blog front view file of block module of chanzhiEPS.
- *
- * @copyright   Copyright 2009-2015 青岛易软天创网络科技有限公司(QingDao Nature Easy Soft Network Technology Co,LTD, www.cnezsoft.com)
- * @license     ZPLV12 (http://zpl.pub/page/zplv12.html)
- * @author      Tingting Dai <daitingting@xirangit.com>
- * @package     block
- * @version     $Id$
- * @link        http://www.chanzhi.org
-*/
+ * @Description:
+ * @Author: Alisa
+ * @Date: 2019-06-02 21:33:34
+ */
 /php*}
 {$themeRoot = $config->webRoot . 'theme/'}
 
@@ -17,107 +12,87 @@
 {$method   = 'get' . ucfirst(str_replace('blog', '', strtolower($block->type)))}
 {$articles = $model->loadModel('article')->$method(empty($content->category) ? 0 : $content->category, $content->limit, 'blog')}
 {if(isset($content->image))} {$articles = $model->loadModel('file')->processImages($articles, 'blog')} {/if}
-
-<div id="block{!echo $block->id}" class='panel panel-block {!echo $blockClass}'>
-  <div class='panel-heading'>
-    <strong>{!echo $icon . $block->title}</strong>
-    {if(!empty($content->moreText) and !empty($content->moreUrl))}
-      <div class='pull-right'>{!html::a($content->moreUrl, $content->moreText)}</div>
-    {/if}
-  </div>
-  {if(isset($content->image))}
-    {$pull     = $content->imagePosition == 'right' ? 'pull-right' : 'pull-left'}
-    {$imageURL = !empty($content->imageSize) ? $content->imageSize . 'URL' : 'smallURL'}
-    <div class='panel-body'>
-      <div class='items'>
-
-      {foreach($articles as $article)}
-      {$url = helper::createLink('blog', 'view', "id=$article->id", "category={{$article->category->alias}}&name=$article->alias")}
-
-        <div class='item'>
-          <div class='item-heading'>
-            {$blod = ''}
-            {if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')) and $article->stickBold)}
-            {$blod = 'font-weight:bold;'}
-            {/if}
-            {if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')))} <span class='red'><i class="icon icon-arrow-up"></i></span>{/if}
-
-            {if(isset($content->showCategory) and $content->showCategory == 1)}
-              {if($content->categoryName == 'abbr')}
-                {$categoryName = '[' . ($article->category->abbr ? $article->category->abbr : $article->category->name) . '] '}
-                {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), $categoryName)}
-              {else}
-                {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), '[' . $article->category->name . '] ')}
-              {/if}
-            {/if}
-            <strong>{!html::a($url, $article->title, "style='{{$bold}}color:{{$article->titleColor}}'")}</strong>
-          </div>
-          <div class='item-content'>
-            <div class='text small text-muted'>
-              <div class='media {$pull}' style="max-width: {!echo !empty($content->imageWidth) ? $content->imageWidth . 'px' : '60px'}">
-              {if(!empty($article->image))}
-                {$title = $article->image->primary->title ? $article->image->primary->title : $article->title}
+<section class="content-section low-rider">
+    	<div class="container">
+        	<div class="row">
+<div class="col-lg-6 sidebar {!echo $blockClass}">
+  <h4 class="anim fadeInRight">
+  {$block->title}
+    <i class="fa fa-comment"></i>
+    <span class='pull-right'>
+      {!html::a(helper::createLink('blog', 'index'), $lang->more,"class = 'more'")}
+    </span>
+  </h4>
+  <div class="anim fadeInRight">
+    <ul id="carousel-2" class="posts-wrapper">
+    {$i = 0}
+    {foreach($articles as $article)}
+      {$alias = "category={{$article->category->alias}}&name={{$article->alias}}"}
+      {$url   = helper::createLink('blog', 'view', "id=$article->id", $alias)}
+      {* 截取字符串，只显示16个UTF8字符 *}
+      {$title = mb_strlen($article->title,'UTF8')>16 ? mb_substr($article->title,0,16,'UTF8' ) . "<strong>...</strong>" : $article->title}
+      {$summary =  mb_strlen($article->summary,'UTF8')>32 ? mb_substr($article->summary,0,32,'UTF8' ) . "<strong>...</strong>" : $article->summary}
+      {if($i%3 == 0)} {* owlCarousel li ul 控制 *}
+      <li>
+        <ul class="posts">
+      {/if}
+          <li>
+            {* 加载首图 *}
+            {if(!empty($article->image))}
                 {$article->image->primary->objectType = 'article'}
-                {!html::a($url, html::lazyloadImage($model->loadModel('file')->printFileURL($article->image->primary, $imageURL), "title='$title' class='thumbnail'" ))}
-              {/if}
-              </div>
-              <strong class='text-important text-nowrap'>
-                {if(isset($content->time))} {!echo "<i class='icon-time'></i> " . formatTime($article->addedDate, DT_DATE4)} {/if}
-              </strong>
-              &nbsp;{$article->summary}
-            </div>
-          </div>
-        </div>
-        {/foreach}
-      </div>
-    </div>
-  {else}
-    <div class='panel-body'>
-      <ul class='ul-list'>
-        {foreach($articles as $article)}
-          {$alias = "category={{$article->category->alias}}&name={{$article->alias}}"}
-          {$url   = helper::createLink('blog', 'view', "id=$article->id", $alias)}
-          {if(isset($content->time))}
-            <li>
+                {!html::a($url, html::lazyloadImage($model->loadModel('file')->printFileURL($article->image->primary)))}
+                {* , "alt = '$article->title' title='$article->title'" *}
+            {else}
+            <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+            {/if}
+            <h5 style="line-height: 20px;">
+            {* 原创标签 *}
+            {if($article->source)}<span class='label label-success'>{!echo $lang->article->sourceList[$article->source]}</span>{/if}
+            {* 置顶操作标签，加粗选项未使用 *}
+            {if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')))} <span class='red'><i class="fa fa-arrow-up"></i></span>{/if}
+            {* 博客标题 *}
+            {!html::a($url, $title, "title='{{$article->title}}'")}
+
+            </h5>
+            <h6>
+            {$summary}
+            </h6>
+            <cite>
+              {* 显示categoryName *}
               {if(isset($content->showCategory) and $content->showCategory == 1)}
+                {* 显示category别名 *}
+                {$categoryName = $article->category->name}
                 {if($content->categoryName == 'abbr')}
-                  {$categoryName = '[' . ($article->category->abbr ? $article->category->abbr : $article->category->name) . '] '}
-                  {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), $categoryName)}
-                {else}
-                  {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), '[' . $article->category->name . '] ')}
+                  {$categoryName = ($article->category->abbr ? $article->category->abbr : $article->category->name)}
                 {/if}
+                <i class="fa fa-bookmark"></i>
+                {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"),  $categoryName )}
               {/if}
-              {$bold = ''}
-              {if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')) and $article->stickBold)}
-              {$bold = 'font-weight:bold;'}
+
+              {* 显示时间 *}
+              {if(isset($content->time))}
+              <i class="fa fa-clock-o"></i>{!echo "<strong>" . formatTime($article->addedDate, DT_DATE4) . "</strong>"}
               {/if}
-              {!html::a($url, $article->title, "title='{{$article->title}}' style='{{$bold}}color:{{$article->titleColor}}'")}
-              <span class='sticky'>{if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')))}<span class='red'><i class="icon icon-arrow-up"></i></span>{/if}</span>
-              <span class='pull-right'>{!substr($article->addedDate, 0, 10)}</span>
-            </li>
-          {else}
-            <li>
-              {if(isset($content->showCategory) and $content->showCategory == 1)}
-              {if($content->categoryName == 'abbr')}
-              {$categoryName = '[' . ($article->category->abbr ? $article->category->abbr : $article->category->name) . '] '}
-              {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), $categoryName)}
-              {else}
-              {!html::a(helper::createLink('blog', 'index', "categoryID={{$article->category->id}}", "category={{$article->category->alias}}"), '[' . $article->category->name . '] ')}
-              {/if}
-              {/if}
-              {$bold = ''}
-              {if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')) and $article->stickBold)}
-              {$bold = 'font-weight:bold;'}
-              {/if}
-              {!html::a($url, $article->title, "title='{{$article->title}}' style='{{$bold}}color:{{$article->titleColor}}'")}
-              <span class='sticky'>{if($article->sticky && (!formatTime($article->stickTime) || $article->stickTime > date('Y-m-d H:i:s')))}<span class='red'><i class="icon icon-arrow-up"></i></span>{/if}</span>
-            </li>
-          {/if}
-        {/foreach}
-      </ul>
-    </div>
-  {/if}
-</div>
-<style>
-.sticky{padding-left: 5px;}
-</style>
+
+              {* 阅读量 *}
+              <i class='fa fa-eye'></i> {!printf($lang->article->lblViews, "<strong>" . $article->views . "</strong>")}
+            </cite>
+            <div class="clearfix"></div>
+          </li>
+          {$i = $i +1}
+      {if($i%3 == 0)} {* owlCarousel li ul 控制 *}
+        </ul><!-- .posts -->
+      </li>
+      {/if}
+      {/foreach}
+      {if($i%3 != 0)} {* owlCarousel li ul 最后补齐 *}
+        </ul><!-- .posts -->
+      </li>
+      {/if}
+    </ul><!-- .posts-wrapper -->
+  </div>
+</div><!-- .col-lg-6 .sidebar -->
+
+      </div><!-- .row -->
+    </div><!-- .container -->
+</section><!-- .content-section -->
