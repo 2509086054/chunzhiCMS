@@ -218,9 +218,10 @@ system\template\default\_lang\block\zh-cn.php
 		$lang->block->default->layout->PageName[] = $region;
 	6、添加说明文字 $lang->block->default->regions->
 eps_layout 表中，存储的是最内层的对象 name
-
-helper::a
+-----------------------------------------------------------------------------------
+html::a
 	system\lib\base\front\front.class.php 
+	system\lib\front\front.class.php 
 面包屑导航
 	前端：{$common->printPositionBar($control->app->getModuleName())}
 	后端：system\module\common\model.php printPositionBar()
@@ -230,10 +231,36 @@ $this->clientDevice 赋值
 运行信息
 	system\framework\helper.class.php getExecInfo()
 	system\module\common\lang\zh-cn.php execInfoBar HTML格式
+-----------------------------------------------------------------------------------
+成功案例 --- 最新文章最
+新博客（互动交流）
+待建block
+	blog页：列表，搜索，二维码，blog分类，面包屑导航，促销slide
+	文章页：列表，搜索，二维码，blog分类，面包屑导航，促销slide
+	促销slide，使用
+		<strong>FRESH FROM THE BLOG</strong>
+			<div class="nivo-wrapper">
+				<div id="slider" class="nivoSlider">
+		$("#slider").nivoSlider({
+	
+	产品属性
+	分页
+	面包屑导航
+	
+	system\framework\helper.class.php getExecInfo()
+		G198 if ($app->clientDevice == 'mobile') { 缓存的$问题,未测试
+	D:\xampp\htdocs\chunzhiCMS\www\theme\default\common\js\custom.js
+		if ( $.isFunction($.fn.backstretch) ) { 
+		绝对路径 /data/
 
 
+                        <div class="ms-nav-prev" id="tPrev"></div>
+						<div class="ms-nav-next" id="tNext"></div>
+						owlCarousel
 
-
+mb_strlen()函数
+需要注意的是，mb_strlen并不是PHP核心函数，使用前需要确保在php.ini中加载了php_mbstring.dll，即确保
+“extension=php_mbstring.dll”这一行存在并且没有被注释掉，否则会出现未定义函 数的问题。
 
 
 
