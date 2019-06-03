@@ -61,7 +61,13 @@ jQuery(document).ready(function($) {
     touchDrag:false,
     mouseDrag:false
   });
-
+  $("#testowlCarousel").owlCarousel({
+    autoPlay: true,
+    singleItem: true,
+    slideSpeed: 800,
+    touchDrag:true,
+    mouseDrag:true
+  });
   // Remove the master slider's dependancy
   if ( typeof MasterSlider === 'function' ) {
 
@@ -129,7 +135,8 @@ jQuery(document).ready(function($) {
       speed:20,
       width:500,
       view:"fade",
-      height:500
+      height: 500,
+      grabCursor: false //grab.png 404，故不用这个功能
     });
 
     $(".ms-nav-next#tNext").click(function() {

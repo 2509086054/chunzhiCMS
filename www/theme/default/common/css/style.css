@@ -1253,7 +1253,8 @@ ul.pagination li a:hover {
 
 .sidebar ul.comments-wrapper,
 .sidebar ul.posts-wrapper {
-  margin-bottom:60px;
+  /* margin-bottom:60px; by alisa */
+  margin-bottom:10px;
 }
 
 .sidebar ul.comments li {
@@ -1272,7 +1273,8 @@ ul.pagination li a:hover {
 
 .sidebar .testimonial-wrapper {
   height:210px;
-  margin-bottom:75px;
+  /* margin-bottom:75px; by alisa */
+  margin-bottom:10px;
 }
 
 .sidebar .testimonial-wrapper .owl-item > div {
@@ -2468,7 +2470,8 @@ footer.classic .icpbeian {
   padding:0;
   overflow:hidden;
   margin-top:0;
-  height:500px;
+  /* height:500px; by alisa */
+  height:300px;
 }
 
 .content-section.fixed.sm,
@@ -2488,7 +2491,7 @@ footer.classic .icpbeian {
   height:100%;
   overflow:hidden;
 }
-
+.content-section.fixed img
 .content-section.fixed .overlay {
   height:100%;
   width:100%;
@@ -2603,12 +2606,14 @@ footer.classic .icpbeian {
 
 .content-section.fixed .ms-nav-next,
 .content-section.fixed .ms-nav-prev {
-  color:rgba(255,255,255,.1);
+   color: rgba(255,255,255,.4);
+  /*color:rgba(255,255,255,1);;by alisa */
 }
 
 .content-section.fixed .ms-nav-next:hover,
 .content-section.fixed .ms-nav-prev:hover {
-  color:rgba(255,255,255,.4);
+  color: rgba(255,255,255,.6);
+  /*color:rgba(255,255,255,.4);;by alisa */
 }
 
 .content-section.fixed .ms-nav-prev {
@@ -2675,6 +2680,9 @@ div.testimonials > i.fa-quote-right {
   margin-top:-32px;
 }
 
+.testimonial-wrapper .owl-item > div a {
+  color:#fff;
+}
 /** LISTS **/
 ul.fa {
   text-decoration:none;

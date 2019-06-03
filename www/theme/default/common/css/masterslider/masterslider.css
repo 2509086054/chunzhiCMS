@@ -1,17 +1,17 @@
-/** 
+/**
  *  Master Slider
  *	version 1.0
  * 	Core css file
  */
- 
+
 .master-slider {
 	position: relative;
 	visibility: hidden;
-	
+	/* min-height: 790px; by alisa */
 	-moz-transform: translate3d(0 , 0 , 0);
 }
 
-.master-slider h1, 
+.master-slider h1,
 .master-slider h2,
 .master-slider p {
 	font-size:96px;
@@ -33,7 +33,7 @@
 }
 
 .master-slider .center {
-	text-align:center;	
+	text-align:center;
 }
 
 .master-slider p a.btn {
@@ -89,7 +89,7 @@
 .ms-ie .ms-grab-cursor{cursor: url("../masterslider/style/grab.cur"), move;}
 .ms-ie .ms-grabbing-cursor {cursor: url("../masterslider/style/grabbing.cur"), move;}
 
-.ms-view { 
+.ms-view {
 	margin:0px auto;
 	overflow:hidden;
 	position:relative;
@@ -108,7 +108,7 @@
 	-ms-transform: translateZ(0px);
 	-o-transform: translateZ(0px);
 	transform: translateZ(0px);
-	
+
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-ms-transform-style: preserve-3d;
@@ -245,7 +245,7 @@
 	-moz-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	-ms-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	-o-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
-	transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000); 	
+	transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	-webkit-border-radius: 60px;
 	-moz-border-radius: 60px;
 	border-radius: 60px;
@@ -253,7 +253,7 @@
 
 .ms-icon:hover i.fa {
 	background:#6ebff3;
-	color:#fff;	
+	color:#fff;
 }
 
 /**
@@ -262,7 +262,7 @@
 * /////////////////////
 */
 .ms-nav-next {
-	
+
 }
 
 .ms-bullets.ms-dir-h {
@@ -309,5 +309,5 @@
 	-moz-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	-ms-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	-o-transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
-	transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000); 	
+	transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 }
