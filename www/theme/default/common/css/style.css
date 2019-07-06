@@ -551,16 +551,19 @@ a:hover {
   position:relative;
 }
 
+.portfolio:hover .directionNav a,
 .navigation ul.navbar-nav li.dropdown.full .nivo-wrapper:hover .nivo-directionNav a,
 .content-section.slider-with-text .nivo-wrapper:hover .nivo-directionNav a {
   background:rgba(64,64,64,.2) !important;
 }
 
+.portfolio:hover .directionNav a i,
 .navigation ul.navbar-nav li.dropdown.full .nivo-wrapper:hover .nivo-directionNav a i,
 .content-section.slider-with-text .nivo-wrapper .nivo-directionNav a i {
   color:rgba(255,255,255,.9);
 }
 
+.portfolio .directionNav:hover a,
 .navigation ul.navbar-nav li.dropdown.full .nivo-wrapper .nivo-directionNav:hover a,
 .content-section.slider-with-text .nivo-wrapper .nivo-directionNav:hover a {
   background:rgba(64,64,64,.4) !important;
@@ -661,6 +664,7 @@ section.content-section .row.no-heading {
   display:block;
   padding-bottom:72px;
   margin:0;
+  background-attachment: fixed;
 }
 
 .content-section.light {
@@ -798,7 +802,7 @@ h6 {
   margin-top:-4px; /** Adjust the line-height padding **/
   display:block;
 }
-
+.portfolio .directionNav a,
 .content-section.slider-with-text .nivo-wrapper .nivo-directionNav a {
   width:40px;
   text-align:center;
@@ -1160,8 +1164,8 @@ ul.pagination li a:hover {
   color:#404040;
   font-family:"Roboto", Arial, sans-serif;
   line-height:17px;
-	padding:0;
-	/* top 改为 5px by alisa */
+  padding:0;
+  /* top 改为 5px by alisa */
   margin:5px 0 20px 0;
 }
 
@@ -1171,15 +1175,15 @@ ul.pagination li a:hover {
   position:relative;
   top:-2px;/* 1px改为-2px by Alisa */
   /* 加入 padding-right by Alisa */
-	padding-right: 10px;
-	color: rgba(0,0,0,.075);
+  padding-right: 10px;
+  color: rgba(0,0,0,.075);
 }
 
 /* 新增 by Alisa */
 .sidebar span.red{
-	color:#d2322d;
-	padding-left: 7px;
-	padding-right: 7px;
+  color:#d2322d;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 .sidebar h4:hover i.fa {
   color:#6ebff3;
@@ -1516,6 +1520,44 @@ ul.pagination li a:hover {
   width:400px;
   height:300px;
   overflow:hidden;
+  position:relative;
+}
+.portfolio .form
+.portfolio .filter2 {
+  padding: 15px 0 15px 0;
+  margin: 0;
+  position: relative;
+}
+
+.portfolio.low-rider {
+  padding-bottom:10px;
+  padding-top:10px;
+}
+.portfolio .prevNav {
+  left:0px;
+}
+.portfolio .nextNav {
+  right:0px;
+}
+
+.portfolio .directionNav a {
+  position:absolute;
+  /*top:45%;*/
+  z-index:9;
+  cursor:pointer;
+}
+
+.portfolio .directionNav a {
+  background:rgba(64,64,64,0.2) !important;
+  height:100% !important;
+  top:-1px;
+}
+
+.portfolio .directionNav a i {
+  color:rgba(255,255,255,0.2);
+  font-size:14px;
+  line-height:0;
+  top:50%;
   position:relative;
 }
 
@@ -3375,6 +3417,7 @@ ul.info-list li i.fa {
 *** Animations ***
 **/
 a,
+.portfolio .directionNav,
 .nivo-wrapper .nivo-directionNav,
 .content-section h1 i,
 .content-section h2 i,

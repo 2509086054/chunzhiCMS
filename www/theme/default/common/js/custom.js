@@ -53,7 +53,17 @@ jQuery(document).ready(function($) {
     }
   }
 
-  $("#carousel,#carousel-2").owlCarousel({
+  $("#about_slider").nivoSlider({
+    slices: 4,
+    boxCols: 8,
+    boxRows: 4,
+    animSpeed: 200,
+    controlNav: false,
+    prevText: '<i class="fa fa-chevron-left"></i>',
+    nextText: '<i class="fa fa-chevron-right"></i>',
+  });
+
+  $("#carousel,#blogCarousel").owlCarousel({
     autoPlay:true,
     singleItem:true,
     transitionStyle:"goDown",
@@ -61,13 +71,23 @@ jQuery(document).ready(function($) {
     touchDrag:false,
     mouseDrag:false
   });
-  $("#testowlCarousel").owlCarousel({
+  $("#articleCarousel").owlCarousel({
     autoPlay: true,
     singleItem: true,
     slideSpeed: 800,
     touchDrag:true,
     mouseDrag:true
   });
+
+  // 循环轮播到上一个项目
+  $(".prevNav").click(function(){
+    $("#myCarousel").carousel('prev');
+  });
+  // 循环轮播到下一个项目
+  $(".nextNav").click(function(){
+    $("#myCarousel").carousel('next');
+  });
+
   // Remove the master slider's dependancy
   if ( typeof MasterSlider === 'function' ) {
 
@@ -130,7 +150,7 @@ jQuery(document).ready(function($) {
       space:0,
       fullwidth:true,
       loop:true,
-      autoplay:true,
+      //autoplay:true,
       overPause:false,
       speed:20,
       width:500,
@@ -193,8 +213,9 @@ jQuery(document).ready(function($) {
 
   // Initialize the parallax background
   $.stellar({
-    horizontalScrolling: false,
-    verticalOffset: -400
+    verticalOffset: -400,
+    horizontalScrolling: false, //水平滚动为false,设置垂直滚动视差效果
+		//responsive: true //用来指定load或resize事件触发时，是否刷新页面。 默认是false。
   });
 
   /************************
