@@ -28,7 +28,7 @@
         </h4>
 
         <div class="testimonials anim fadeInRight">
-          <div class="testimonial-wrapper" id="testowlCarousel">
+          <div class="testimonial-wrapper" id="articleCarousel">
           {foreach($articles as $article)}
             {$alias = "category={{$article->category->alias}}&name={{$article->alias}}"}
             {$url   = helper::createLink('blog', 'view', "id=$article->id", $alias)}

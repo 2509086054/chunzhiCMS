@@ -21,7 +21,7 @@
           </span>
         </h4>
         <div class="anim fadeInRight">
-          <ul id="carousel-2" class="posts-wrapper">
+          <ul id="blogCarousel" class="posts-wrapper">
           {$i = 0}
           {foreach($articles as $article)}
             {$alias = "category={{$article->category->alias}}&name={{$article->alias}}"}
