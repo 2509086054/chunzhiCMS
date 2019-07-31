@@ -3288,26 +3288,52 @@ ul.info-list li i.fa {
 .callout {
   background:#6ebff3;
   text-align:center;
+  position:relative;
+  /* by alisa 2019/7/30
   height:115px;
   padding:0;
-  margin:0;
-  position:relative;
-}
+  margin:0;*/
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  opacity: 0.9;
 
+}
+/* add by alisa 2019/7/30
+ * fixed+ed，防止与 .content-section.fixeded 混淆
+*/
+.callout.fixeded {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  /* padding: 0; */
+  /* margin-top: 0; */
+  /* height: 300px; */
+  /* top: 0; */
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+}
 .callout p {
   font-family:"Roboto", Arial, sans-serif;
   font-size:22px;
   font-weight:100;
   line-height:26px;
   text-align:right;
-  margin:43px 0 0 0;
+  margin:4px 0 10px 0;
   color:#fff;
 }
 
 .callout a.btn {
+  /* by alisa 2019/7/30
   margin-top:34px;
   float:right;
-  margin-left:14px;
+  margin-left:14px;*/
+  padding: 5px 15px;
+  font-size: 14px;
+  border: 2px solid #fff;
+  margin-bottom: 4px;
 }
 
 .callout a.btn:last-child {

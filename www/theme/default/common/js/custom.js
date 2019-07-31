@@ -674,11 +674,19 @@ jQuery(document).ready(function($) {
         $(".navigation").addClass("fixed").css('opacity', '0').stop().animate({
           opacity:'1'
         }, 400);
+
+        // 加入购买号召悬浮栏 by 2019/7/13
+        $("#callout").addClass("fixeded").css('opacity', '0').stop().animate({
+          opacity:'0.8'
+        }, 400);
       }
     }, {offset: -($(".navigation").height())}).waypoint(function(d) {
       if ( d == "up" ) {
         $(this).css("height", "0");
         $(".navigation").removeClass("fixed");
+
+        // 加入购买号召悬浮栏 by 2019/7/13
+        $("#callout").removeClass("fixeded");
       }
     });
   } else {
@@ -697,6 +705,21 @@ jQuery(document).ready(function($) {
       }
     }, { offset: -30 });
   }
+
+  // 页面滚动到 foot-wrapper 时，处理购买号召悬浮栏 by 2019/7/13
+  // waypoint最常用的设置就是offset值，可以设置元素距离顶部高度为多少时触发事件
+  // 可以为数值（100）、百分比（25%）、元素的中间和元素底部（'bottom-in-view'）
+  $(".foot-wrapper").waypoint(function(d) {
+    if ( d == "down" ) {
+      $("#callout").removeClass("fixeded");
+    }
+  }, {offset: -($(".navigation").height())}).waypoint(function(d) {
+    if ( d == "up" ) {
+      $("#callout").addClass("fixeded").css('opacity', '0').stop().animate({
+        opacity:'0.8'
+      }, 400);
+    }
+  });
 
   /*****************************
   ****** DropDown Setup ********
