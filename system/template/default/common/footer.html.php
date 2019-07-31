@@ -37,7 +37,8 @@
 <!-- Retina core JavaScript -->
 {*!js::import($themeRoot . 'common/js/retina-1.1.0.min.js')*}
 <!-- Nivo Slider JavaScript -->
-{!js::import($themeRoot . 'common/js/jquery.nivo.slider.pack.js')}
+{* https://github.com/2509086054/Nivo-Slider-Lazy-Load-v2 *}
+{!js::import($themeRoot . 'common/js/jquery.nivo.slider.min.js')}
 <!-- Video core JavaScript -->
 {!js::import($themeRoot . 'common/js/video.js')}
 <!-- OWL Carousel core JavaScript -->

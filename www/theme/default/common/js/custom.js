@@ -53,12 +53,13 @@ jQuery(document).ready(function($) {
     }
   }
 
-  $("#about_slider").nivoSlider({
+  $("#products_slider").nivoSlider({
     slices: 4,
     boxCols: 8,
     boxRows: 4,
     animSpeed: 200,
-    controlNav: false,
+    controlNav: false, //需要调整css nivo-controlNav
+    pauseTime: 5000,
     prevText: '<i class="fa fa-chevron-left"></i>',
     nextText: '<i class="fa fa-chevron-right"></i>',
   });
