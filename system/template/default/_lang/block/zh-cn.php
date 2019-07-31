@@ -44,8 +44,8 @@ $lang->block->default->typeList['message']         = '留言';
 $lang->block->default->typeList['followUs']        = '关注我们';
 $lang->block->default->typeList['about']           = '公司简介';
 $lang->block->default->typeList['links']           = '友情链接';
-$lang->block->default->typeList['slide']           = '首页主幻灯片';
-$lang->block->default->typeList['DaleSlide']           = '系统幻灯片';
+$lang->block->default->typeList['slide']           = '主幻灯片';
+$lang->block->default->typeList['DaleSlide']           = '促销幻灯片';
 $lang->block->default->typeList['header']          = '网站头部';
 $lang->block->default->typeList['bottomNav']       = '底部导航';
 $lang->block->default->typeList['subscribe']       = '订阅博客';
@@ -233,14 +233,14 @@ $lang->block->default->layout->all[] = array('type' => 'placeholder', 'name' => 
 $all_bottom_regionRow1 = array('type' => 'grid', 'name' => 'all_bottom_regionRow1');
 $all_bottom_regionRow2 = array('type' => 'container', 'name' => 'all_bottom_regionRow2');
 //2、分组,定义name,用children属性包含最内层的region：
-$all_bottom_Region1 = array('type' => 'container', 'name' => 'all_bottom_Region1','children' => array());
+$all_bottom_Region1 = array('type' => 'container', 'name' => 'all_bottom_Region1', 'children' => array());
 $all_bottom_Region1['children'][] = $all_bottom_regionRow1;
 $all_bottom_Region1['children'][] = $all_bottom_regionRow2;
 //3、把2个数组包装到1个数组中：
 $all_bottom_children = array();
 $all_bottom_children[] = $all_bottom_Region1;
 //4、定义最外层的 region
-$lang->block->default->layout->all[] = array('type' => 'row', 'name' => 'bottom','children' => $all_bottom_children);
+$lang->block->default->layout->all[] = array('type' => 'row', 'name' => 'bottom', 'children' => $all_bottom_children);
 
 $lang->block->default->layout->all[] = array('type' => 'invisible', 'name' => 'footer', 'title' => 'Footer（不可见）');
 
@@ -271,10 +271,18 @@ $lang->block->default->layout->company_index[] = array('type' => 'row', 'name' =
 $lang->block->default->layout->company_index[] = array('type' => 'grid', 'name' => 'bottomBanner');
 $lang->block->default->layout->company_index[] = array('type' => 'placeholder', 'name' => 'page_footer');
 
+$lang->block->default->layout->product_view =  array();
+$lang->block->default->layout->product_view[] = array('type' => 'placeholder', 'name' => 'page_header');
+$lang->block->default->layout->product_view[] = array('type' => 'placeholder', 'name' => 'breadcrumb');
+$lang->block->default->layout->product_view[] = array('type' => 'container', 'name' => 'topBanner');
+$lang->block->default->layout->product_view[] = array('type' => 'placeholder', 'name' => 'article');
+$lang->block->default->layout->product_view[] = array('type' => 'container', 'name' => 'bottomBanner');
+$lang->block->default->layout->product_view[] = array('type' => 'placeholder', 'name' => 'page_footer');
+
 $lang->block->default->layout->article_browse = $lang->block->default->layout->company_index;
 $lang->block->default->layout->article_view = $lang->block->default->layout->company_index;
 $lang->block->default->layout->product_browse = $lang->block->default->layout->company_index;
-$lang->block->default->layout->product_view = $lang->block->default->layout->company_index;
+//$lang->block->default->layout->product_view = $lang->block->default->layout->company_index;
 $lang->block->default->layout->blog_index = $lang->block->default->layout->company_index;
 $lang->block->default->layout->blog_view = $lang->block->default->layout->company_index;
 

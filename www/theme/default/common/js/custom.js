@@ -58,8 +58,8 @@ jQuery(document).ready(function($) {
     boxCols: 8,
     boxRows: 4,
     animSpeed: 200,
-    controlNav: false, //需要调整css nivo-controlNav
-    pauseTime: 5000,
+    controlNav: false, //数字导航栏，需要调整css nivo-controlNav,暂未动
+    pauseTime: 3000,
     prevText: '<i class="fa fa-chevron-left"></i>',
     nextText: '<i class="fa fa-chevron-right"></i>',
   });

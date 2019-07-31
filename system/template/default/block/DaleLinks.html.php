@@ -5,7 +5,7 @@
  * @Author: Alisa
  * @Date: 2019-05-29 00:15:44
  * @LastEditors: Alisa
- * @LastEditTime: 2019-05-30 15:42:14
+ * @LastEditTime: 2019-07-30 16:14:09
  */
 *}
 {if($app->getModuleName() != 'links' and !empty($config->links->index))}
@@ -20,11 +20,11 @@
   </h5>
   <ul class="pages">
   {*$config->links->index*}{*编辑器有问题，HTML总是变化*}
-    <li class="anim fadeInRight" data-wow-delay="0.35s"><a class="btn btn-bordered white" role="button" href="#">Home</a></li>
-    <li class="anim fadeInRight" data-wow-delay="0.37s"><a class="btn btn-bordered white" role="button" href="#">Portfolio</a></li>
-    <li class="anim fadeInRight" data-wow-delay="0.39s"><a class="btn btn-bordered white" role="button" href="#">About</a></li>
+    <li class="anim fadeInRight" data-wow-delay="0.35s"><a class="btn btn-bordered white" role="button" href="#">天猫</a></li>
+    <li class="anim fadeInRight" data-wow-delay="0.37s"><a class="btn btn-bordered white" role="button" href="#">京东</a></li>
+    <li class="anim fadeInRight" data-wow-delay="0.39s"><a class="btn btn-bordered white" role="button" href="#">拼多多</a></li>
 
-    <li class="anim fadeInRight" data-wow-delay="0.42s"><a class="btn btn-bordered white" role="button" href="#">Blog</a></li>
+    <li class="anim fadeInRight" data-wow-delay="0.42s"><a class="btn btn-bordered white" role="button" href="#">微信商城</a></li>
     <li class="anim fadeInRight" data-wow-delay="0.45s"><a class="btn btn-bordered white" role="button" href="#">Contact</a></li>
     <li class="anim fadeInRight" data-wow-delay="0.49s"><a class="btn btn-bordered white" role="button" href="#">About</a></li>
 

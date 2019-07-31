@@ -3334,6 +3334,7 @@ ul.info-list li i.fa {
   font-size: 14px;
   border: 2px solid #fff;
   margin-bottom: 4px;
+  border-radius: 10px;
 }
 
 .callout a.btn:last-child {
